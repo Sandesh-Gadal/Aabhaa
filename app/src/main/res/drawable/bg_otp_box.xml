@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:shape="rectangle">-->
+<!--    <solid android:color="#E0E0E0"/>-->
+<!--    <corners android:radius="8dp"/>-->
+<!--    <stroke android:width="1dp" android:color="#BDBDBD"/>-->
+<!--</shape>-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- Error -->
+<item android:state_selected="true" android:state_activated="false" android:drawable="@drawable/bg_otp_box_error"/>
+
+<!-- Success -->
+<item android:state_activated="true" android:drawable="@drawable/bg_otp_box_success"/>
+
+<!-- Focused -->
+<item android:state_focused="true" android:drawable="@drawable/bg_otp_box_active"/>
+
+<!-- Default / Inactive -->
+<item android:drawable="@drawable/bg_otp_box_inactive"/>
+</selector>
+
+

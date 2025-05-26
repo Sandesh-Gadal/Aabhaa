@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Aabhaa" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+    </style>
+
+
+    <!-- Login Theme -->
+    <style name="Theme.Aabhaa.Login" parent="Theme.Aabhaa">
+        <item name="bgStyle">@drawable/lang_selector_bg</item>
+        <item name="bgcolor">@android:color/white</item>
+        <item name="textcolor">@color/white</item>
+    </style>
+
+    <!-- Register Theme -->
+    <style name="Theme.Aabhaa.Register" parent="Theme.Aabhaa">
+        <item name="bgStyle">@drawable/lang_selector_bg_transparent</item>
+        <item name="bgcolor">@color/dark_green</item>
+        <item name="textcolor">@android:color/black</item>
+    </style>
+
+</resources>

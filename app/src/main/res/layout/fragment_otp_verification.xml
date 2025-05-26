@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+<!--    <include layout="@layout/back_button" />-->
+
+<!--    <include-->
+<!--        layout="@layout/lang_toggle"-->
+<!--        tools:theme="@style/Theme.Aabhaa.Register"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+    <ImageView
+        android:id="@+id/ivOtpIllustration"
+        android:layout_width="228dp"
+        android:layout_height="233dp"
+        android:contentDescription="OTP Illustration"
+        android:src="@drawable/otpimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOtpExpire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="OTP expires in 120 sec"
+        android:textColor="#666"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/otpFields" />
+
+    <Button
+        android:id="@+id/btnSubmitOtp"
+        android:layout_width="333dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#2E7D32"
+        android:elevation="6dp"
+        android:text="Submit"
+        android:textColor="@android:color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvResend" />
+
+    <TextView
+        android:id="@+id/tvResend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Don't receive code? Re-send"
+        android:textColor="#2E7D32"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOtpExpire" />
+
+    <TextView
+        android:id="@+id/tvOtpInfo"
+        android:layout_width="349dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:text="Please enter the Verification code sent to +91xxxxxxxxxx"
+        android:textAlignment="center"
+        android:textColor="#666"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOtpTitle" />
+
+    <TextView
+        android:id="@+id/tvOtpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="OTP VERIFICATION"
+        android:textColor="#1B5E20"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivOtpIllustration" />
+
+    <LinearLayout
+        android:id="@+id/otpFields"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvOtpInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <EditText
+            style="@style/OtpDigitBox"
+            android:id="@+id/otpDigit1" />
+
+        <EditText
+            style="@style/OtpDigitBox"
+            android:id="@+id/otpDigit2" />
+
+        <EditText
+            style="@style/OtpDigitBox"
+            android:id="@+id/otpDigit3" />
+
+        <EditText
+            style="@style/OtpDigitBox"
+            android:id="@+id/otpDigit4" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

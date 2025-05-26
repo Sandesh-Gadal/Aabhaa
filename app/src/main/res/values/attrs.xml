@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global theme attributes -->
+    <attr name="bgcolor" format="reference|color" />
+    <attr name="textcolor" format="reference|color" />
+    <attr name="bgStyle" format="reference|string"/>
+
+    <!-- Optional: for custom views that support XML styling via `styleable` -->
+    <declare-styleable name="CustomLangToggle">
+        <attr name="bgStyle"/>
+        <attr name="bgcolor" />
+        <attr name="textcolor" />
+    </declare-styleable>
+</resources>
