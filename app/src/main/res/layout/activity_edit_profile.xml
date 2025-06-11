@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="28dp" />
+
+    <!-- Header Card with Back and Language Toggle -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/headerCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+
+            <include
+                android:id="@+id/backButton"
+                layout="@layout/back_button" />
+
+            <include
+                android:id="@+id/langToggle"
+                layout="@layout/lang_toggle"
+                tools:theme="@style/Theme.Aabhaa.Register" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/headerCard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+           >
+
+            <!-- Profile Picture Section -->
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="12dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/bg_wheat"
+                    app:civ_border_color="@color/green"
+                    app:civ_border_width="2dp" />
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/circle_green"
+                    android:contentDescription="Edit Icon"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_email" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Tap to update photo"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+
+            <!-- Full Name -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Full Name"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fullNameLayout"
+                style="@style/CustomTextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Your Name"
+                app:startIconDrawable="@drawable/profile">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:imeOptions="actionNext"
+                    android:textColor="#1B5E20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Phone Number -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Phone Number"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PhoneLayout"
+                style="@style/CustomTextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: 98XXXXXXXX"
+                app:startIconDrawable="@drawable/ic_address"
+                app:startIconTint="#1B5E20">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textColor="#1B5E20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Email -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Email"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailLayout"
+                style="@style/CustomTextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Your Email"
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconTint="#1B5E20">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textColor="#1B5E20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Gender -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Gender"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"  />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:layout_marginStart="20dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other"
+                    android:layout_marginStart="20dp"/>
+            </RadioGroup>
+
+            <!-- Date of Birth -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Date of Birth"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/DateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CustomTextInputStyle"
+                android:hint="Select date"
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconTint="#1B5E20">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etdatePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:textColor="#1B5E20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Type of Farmer -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp"
+                android:text="Type of Farmer"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <!-- Spinner can go here -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/farmerTypeLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type of Farmer"
+                android:layout_marginTop="8dp"
+              >
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteFarmerType"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:inputType="none"
+                    android:background="@null"
+                    android:paddingStart="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <!-- Land Size -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Land Size (in Ropani/Bigha)"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/LandszieLayout"
+                style="@style/CustomTextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. 5.5"
+                android:inputType="numberDecimal"
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconTint="#1B5E20">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLandsize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:textColor="#1B5E20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!-- Years of Experience -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Experience in Agriculture"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ExperienceLayout"
+                style="@style/CustomTextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter your experience year"
+                app:startIconDrawable="@drawable/profile">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etExperience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:imeOptions="actionNext" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Education Level -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Education Level"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/EducationLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select your education level"
+                android:layout_marginTop="8dp"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/acvEducation"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:inputType="none"
+                    android:background="@null"
+                    android:paddingStart="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <!-- Preferred Language -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Preferred Language"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English"  />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nepali"
+                    android:layout_marginStart="20dp"/>
+
+
+            </RadioGroup>
+
+
+
+            <!-- Save Button -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/green"
+                android:text="Save Changes"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

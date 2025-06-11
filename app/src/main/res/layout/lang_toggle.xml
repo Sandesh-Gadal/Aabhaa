@@ -15,21 +15,45 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.03" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineSide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
     <!-- Language Selector (Top Right) -->
     <TextView
         android:id="@+id/langSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="332dp"
+        android:gravity="end"
         android:layout_marginTop="28dp"
-        android:background="?attr/bgStyle"
-        android:drawableTint="?attr/bgcolor"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/lang_selector_bg_transparent"
+        android:drawableTint="@color/dark_green"
         android:padding="6dp"
         android:text="EN | नेपाली"
-        android:textColor="?attr/textcolor"
+        android:textColor="@color/black"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="28dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

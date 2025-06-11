@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Aabhaa" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Theme.Aabhaa" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -29,5 +29,14 @@
         <item name="bgcolor">@color/dark_green</item>
         <item name="textcolor">@android:color/black</item>
     </style>
+
+    <style name="Theme.Aabhaa.Material" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize colors if needed -->
+        <item name="colorPrimary">#1B5E20</item>
+        <item name="colorPrimaryVariant">#388E3C</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#81C784</item>
+    </style>
+
 
 </resources>

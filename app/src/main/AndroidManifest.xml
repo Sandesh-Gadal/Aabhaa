@@ -13,13 +13,14 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31" >
 
-        <activity android:name=".views.SplashActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+<!--        <activity android:name=".views.SplashActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN"/>-->
+<!--                <category android:name="android.intent.category.LAUNCHER"/>-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
 
         <activity android:name=".views.ExploreActivity" />
         <activity android:name=".views.LoginActivity"
@@ -30,6 +31,17 @@
              />
         <activity android:name=".views.ForgotpasswordActivity"
             android:theme="@style/Theme.Aabhaa.Register" />
+
+        <activity
+            android:name=".views.EditProfileActivity"
+            android:theme="@style/Theme.Aabhaa.Material"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
 
 
 

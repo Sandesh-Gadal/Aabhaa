@@ -36,7 +36,7 @@ public class ExploreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Navigate to SignupActivity
-                Intent intent = new Intent(ExploreActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(ExploreActivity.this, EditProfileActivity.class);
                 startActivity(intent);
             }
         });
