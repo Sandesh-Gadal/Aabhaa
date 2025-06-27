@@ -1,0 +1,29 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvPesticideTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pesticide Alerts"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/aabhaGreen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPesticideMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read More →"
+        android:textColor="@color/aabhaGreen"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="@id/tvPesticideTitle"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Card Items (Can be turned into RecyclerView later) -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

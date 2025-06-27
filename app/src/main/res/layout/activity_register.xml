@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@android:color/white"
-    tools:context=".views.RegisterActivity">
+    android:fitsSystemWindows="true"
+
+>
 
     <!-- Back Button -->
-    <include layout="@layout/back_button"/>
+    <include layout="@layout/back_button"
+        android:id="@+id/btnBack"/>
 
     <!-- Language Toggle Include -->
     <include
@@ -62,23 +64,21 @@
     <!-- Full Name Field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fullNameLayout"
-        style="@style/LoginInputStyle"
+       style="@style/CustomTextInputStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:hint="Full Name"
         app:startIconDrawable="@drawable/profile"
         app:startIconTint="#1B5E20"
-        app:boxBackgroundMode="none"
         app:layout_constraintTop_toBottomOf="@id/registerSubtitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/border_input"
+            android:layout_height="wrap_content"
             android:paddingStart="60dp"
             android:textColor="#1B5E20"
             android:inputType="textPersonName"
@@ -90,23 +90,22 @@
     <!-- Email Field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
-        style="@style/LoginInputStyle"
+        style="@style/CustomTextInputStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:boxBackgroundMode="none"
+
         android:hint="Enter your email"
         app:startIconDrawable="@drawable/ic_email"
         app:startIconTint="#1B5E20"
         app:layout_constraintTop_toBottomOf="@id/fullNameLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/border_input"
+            android:layout_height="wrap_content"
             android:paddingStart="60dp"
             android:textColor="#1B5E20"
             android:inputType="textEmailAddress" />
@@ -115,61 +114,50 @@
     <!-- Password Field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
-        style="@style/LoginInputStyle"
+        style="@style/CustomTextInputStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Password"
-        app:startIconDrawable="@drawable/ic_password"
-        app:startIconTint="#1B5E20"
-        app:boxBackgroundMode="none"
         app:endIconMode="password_toggle"
         app:endIconTint="#1B5E20"
+        app:startIconDrawable="@drawable/ic_password"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/emailLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
+        android:hint="Password">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/border_input"
-            android:paddingStart="60dp"
+            android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="#1B5E20" />
+            android:paddingStart="60dp"
+            android:textColor="#1B5E20"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Confirm Password Field -->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirmPasswordLayout"
-        style="@style/LoginInputStyle"
+        style="@style/CustomTextInputStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Confirm Password"
-        app:boxBackgroundMode="none"
-        app:startIconDrawable="@drawable/ic_password"
-        app:startIconTint="#1B5E20"
         app:endIconMode="password_toggle"
         app:endIconTint="#1B5E20"
+        app:startIconDrawable="@drawable/ic_password"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/passwordLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
+        android:hint=" Confirm Password">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/border_input"
-            android:paddingStart="60dp"
+            android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="#1B5E20" />
+            android:paddingStart="60dp"
+            android:textColor="#1B5E20"/>
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <!-- Register Button -->
 
-    <!-- Already have an account -->
+
 
     <CheckBox
         android:id="@+id/checkboxTerms"
@@ -185,6 +173,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLayout" />
 
+
+    <!-- Register Button -->
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
@@ -194,13 +184,24 @@
         android:background="@drawable/rounded_button"
         android:backgroundTint="#2E7D32"
         android:elevation="8dp"
-        android:text="Sign in"
+        android:text="Register"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/checkboxTerms" />
 
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/btnRegister"-->
+<!--        style="@style/AabhaaButtonStyle"-->
+<!--        android:text="Request Help"-->
+<!--        android:layout_width="0dp"-->
+<!--        app:layout_constraintStart_toStartOf="@id/guideline1"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/guideline2"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/checkboxTerms"-->
+<!--        />-->
+
+    <!-- Already have an account -->
     <TextView
         android:id="@+id/tvAlreadyAccount"
         android:layout_width="wrap_content"
@@ -229,5 +230,26 @@
         app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toEndOf="@+id/tvAlreadyAccount"
         app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="28dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

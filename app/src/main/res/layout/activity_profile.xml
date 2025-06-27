@@ -79,7 +79,7 @@
 
         <!-- Edit Profile Button -->
         <Button
-            android:id="@+id/edit_profile"
+            android:id="@+id/editProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -103,7 +103,7 @@
             android:background="@color/green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_profile" />
+            app:layout_constraintTop_toBottomOf="@id/editProfile" />
 
         <!-- Menu Items (reuseable block) -->
         <!-- Each row is a LinearLayout with icon, text, and arrow -->

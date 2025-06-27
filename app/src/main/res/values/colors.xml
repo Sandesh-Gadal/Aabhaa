@@ -10,5 +10,13 @@
     <color name="dark_green">#238627</color>
     <color name="green">#2E7D32</color>
     <color name="red">#D32F2F</color>
+    <color name="aabhaGreen">#238627</color> <!-- active -->
+    <color name="inactiveBrown">#4CB050</color> <!-- inactive -->
+
+    <color name="chip_irrigation">#4CAF50</color>
+    <color name="chip_fertilizer">#FF9800</color>
+    <color name="chip_harvest">#9C27B0</color>
+    <color name="chip_plantation">#03A9F4</color>
+    <color name="chip_default">#BDBDBD</color>
 
 </resources>

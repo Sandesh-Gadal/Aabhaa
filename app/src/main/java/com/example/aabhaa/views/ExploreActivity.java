@@ -9,37 +9,31 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aabhaa.R;
+import com.example.aabhaa.databinding.ActivityExploreBinding;
 
-public class ExploreActivity extends AppCompatActivity {
+public class ExploreActivity extends BaseActivity<ActivityExploreBinding> {
 
-    private Button btnSignIn;
-    private TextView createAccount;
+  private ActivityExploreBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_explore);  // Replace with your actual layout file name
+       super.onCreate(savedInstanceState);
 
-        btnSignIn = findViewById(R.id.btnSignIn);
-        createAccount = findViewById(R.id.createAccount);
+       binding = ActivityExploreBinding.inflate(getLayoutInflater());
+       setContentView(binding.getRoot());
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Navigate to LoginActivity
-                Intent intent = new Intent(ExploreActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+
+       //sign in button click goes to login
+        binding.btnSignIn.setOnClickListener(view ->{
+            Intent intent = new Intent (ExploreActivity.this , LoginActivity.class);
+            startActivity(intent);
         });
 
-        createAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Navigate to SignupActivity
-                Intent intent = new Intent(ExploreActivity.this, EditProfileActivity.class);
-                startActivity(intent);
-            }
+        binding.createAccount.setOnClickListener(view -> {
+            Intent intent = new Intent (ExploreActivity.this , RegisterActivity.class);
+            startActivity(intent);
         });
+
 
 
     }

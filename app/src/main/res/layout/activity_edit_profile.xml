@@ -420,6 +420,7 @@
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/green"
                 android:text="Save Changes"
+                android:textSize="16sp"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white" />
         </LinearLayout>

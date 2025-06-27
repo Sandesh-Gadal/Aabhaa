@@ -22,7 +22,7 @@
         android:layout_height="44dp"
         android:layout_margin="16dp"
         android:padding="10dp"
-        android:background="@drawable/rounded_back"
+        android:background="@drawable/bg_white_rounded"
         android:src="@drawable/ic_back"
         android:contentDescription="Back"
         app:tint="@color/dark_green"

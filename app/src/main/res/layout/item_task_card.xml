@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Left section with title, time, chip -->
+        <LinearLayout
+            android:id="@+id/leftSection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkBoxComplete"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/taskTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Water Tomato Plants"
+                android:textColor="#1B5E20"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/taskTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6:00 AM"
+                android:textColor="#388E3C"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTaskType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Irrigation"
+                android:textSize="14sp"
+                android:clickable="false"
+                android:checkable="false"
+                android:focusable="false"
+                android:textColor="@android:color/white"
+                app:chipCornerRadius="16dp"
+                app:chipBackgroundColor="@color/chip_irrigation"
+                app:chipIconVisible="false"
+                app:checkedIconVisible="false"
+                app:chipStrokeWidth="0dp"
+              />
+        </LinearLayout>
+
+        <!-- Circular checkbox aligned vertically center on right -->
+        <CheckBox
+            android:id="@+id/checkBoxComplete"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:buttonTint="@color/aabhaGreen"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

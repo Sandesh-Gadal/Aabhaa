@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScroll"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.03" />
+
+        <!-- Left Guideline -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <!-- Right Guideline -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+
+        <include
+            android:id="@+id/include_header"
+            layout="@layout/section_home_header"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTop"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/include_weather"
+            layout="@layout/section_weather_card"
+            app:layout_constraintTop_toBottomOf="@id/include_header"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            android:layout_width="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content" />
+
+
+        <include
+            android:id="@+id/include_crops"
+            layout="@layout/section_suitable_crops"
+            app:layout_constraintTop_toBottomOf="@id/include_weather"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_width="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content" />
+
+
+        <include
+            android:id="@+id/include_pesticides"
+            layout="@layout/section_pesticide_alerts"
+            app:layout_constraintTop_toBottomOf="@id/include_crops"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            android:layout_width="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content" />
+
+
+        <include
+            android:id="@+id/include_tips"
+            layout="@layout/section_farming_tips"
+            app:layout_constraintTop_toBottomOf="@id/include_pesticides"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            android:layout_width="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"  />
+
+        <include
+            android:id="@+id/include_slider"
+            layout="@layout/section_article_slider"
+            app:layout_constraintTop_toBottomOf="@id/include_tips"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="80dp" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            style="@style/AabhaBottomNavStyle"
+            app:menu="@menu/nav_bottom_menu"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+
+
