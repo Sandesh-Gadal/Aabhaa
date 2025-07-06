@@ -35,20 +35,45 @@
         app:cardElevation="4dp"
         app:cardCornerRadius="0dp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp">
+            android:layout_height="64dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
 
+            <!-- Back Button Include -->
             <include
                 android:id="@+id/backButton"
-                layout="@layout/back_button" />
+                layout="@layout/back_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
+            <!-- Header Title -->
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Address"
+                android:textColor="@color/dark_green"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.81" />
+
+            <!-- Language Toggle Include -->
             <include
                 android:id="@+id/langToggle"
                 layout="@layout/lang_toggle"
-                tools:theme="@style/Theme.Aabhaa.Register" />
-        </RelativeLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -66,13 +91,35 @@
 
 
 
-        <!-- Map Placeholder -->
-        <ImageView
-            android:id="@+id/mapImage"
+
+
+        <FrameLayout
+            android:id="@+id/mapContainer"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_address" />
+            android:layout_height="220dp">
+
+            <!-- Small Map Fragment -->
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <!-- Expand Button (top-end) -->
+            <ImageButton
+                android:id="@+id/btnExpandMap"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Expand Map"
+                android:src="@drawable/ic_expand"
+                app:tint="@color/dark_green" />
+        </FrameLayout>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -181,10 +228,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLatitude"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="2.568912"
-                        android:inputType="number"/>
+                        android:inputType="numberDecimal"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -208,9 +256,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLongitude"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:text="32.59786" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -250,4 +299,35 @@
         />
     </LinearLayout>
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/fullscreenMapContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/headerCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Fullscreen map -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fullscreenMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Close button -->
+        <ImageButton
+            android:id="@+id/btnCloseFullMap"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|start"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_close"
+            android:background="@android:color/transparent"
+            android:contentDescription="Close Map"
+           />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

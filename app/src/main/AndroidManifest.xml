@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--user-permissions-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,31 +15,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aabhaa"
-        tools:targetApi="31" >
+        tools:targetApi="31">
 
+
+
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCDEjUBmO3b57HSfBjHuOMsfI3BTwP3Tv8" />
+
+        <activity
+            android:name=".views.AddressActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
         <activity android:name=".views.ExploreActivity" />
         <activity android:name=".views.LoginActivity" />
         <activity android:name=".views.RegisterActivity" />
-        <activity android:name=".views.ForgotpasswordActivity"
+        <activity
+            android:name=".views.ForgotpasswordActivity"
             android:theme="@style/Theme.Aabhaa.Register" />
         <activity
             android:name=".views.SplashActivity"
-            android:theme="@style/Theme.Aabhaa.Material"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Aabhaa.Material">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.FeedbackActivity"/>
-        <activity android:name=".views.HomeActivity"/>
-        <activity android:name=".views.ProfileActivity"/>
-        <activity android:name=".views.EditProfileActivity"/>
-        <activity android:name=".views.AddAddressActivity"/>
-        <activity android:name=".views.NotificationActivity"/>
-        <activity android:name=".views.WeatherActivity"/>
-        <activity android:name=".views.CalendarActivity"/>
+        <activity android:name=".views.FeedbackActivity" /> <!-- <activity android:name=".views.HomeActivity"/> -->
+        <!-- <activity android:name=".views.ProfileActivity"/> -->
+        <activity android:name=".views.EditProfileActivity" />
+        <activity android:name=".views.ContentDetailsActivity" />
+        <activity android:name=".views.NotificationActivity" /> <!-- <activity android:name=".views.WeatherActivity"/> -->
+        <!-- <activity android:name=".views.CalendarActivity"/> -->
+        <activity android:name=".views.MainActivity" />
+        <activity android:name=".views.AddTaskActivity" />
     </application>
-
 
 </manifest>

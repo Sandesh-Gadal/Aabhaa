@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_green">#238627</color>
     <color name="green">#2E7D32</color>
+    <color name="backbtngreen">#AEE6B3</color>
     <color name="red">#D32F2F</color>
     <color name="aabhaGreen">#238627</color> <!-- active -->
     <color name="inactiveBrown">#4CB050</color> <!-- inactive -->

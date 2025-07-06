@@ -7,5 +7,5 @@ android:shape="rectangle">
     android:centerColor="@color/white"
     android:endColor="@color/white"
     android:startColor="#C8FACC"
-    android:centerY="0.3" />
+    android:centerY="0.7" />
 </shape>

@@ -96,7 +96,7 @@
                     android:background="@drawable/circle_green"
                     android:contentDescription="Edit Icon"
                     android:padding="4dp"
-                    android:src="@drawable/ic_email" />
+                    android:src="@drawable/ic_camera" />
             </FrameLayout>
 
             <TextView
@@ -291,34 +291,34 @@
 
 
             <!-- Land Size -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Land Size (in Ropani/Bigha)"
-                android:textSize="18sp"
-                android:textColor="@color/green"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:text="Land Size (in Ropani/Bigha)"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textColor="@color/green"-->
+<!--                android:textStyle="bold" />-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/LandszieLayout"
-                style="@style/CustomTextInputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="e.g. 5.5"
-                android:inputType="numberDecimal"
-                app:startIconDrawable="@drawable/ic_email"
-                app:startIconTint="#1B5E20">
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/LandsizeLayout"-->
+<!--                style="@style/CustomTextInputStyle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="e.g. 5.5"-->
+<!--                android:inputType="numberDecimal"-->
+<!--                app:startIconDrawable="@drawable/ic_email"-->
+<!--                app:startIconTint="#1B5E20">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etLandsize"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:textColor="#1B5E20" />
-            </com.google.android.material.textfield.TextInputLayout>
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/etLandsize"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:imeOptions="actionNext"-->
+<!--                    android:inputType="textPersonName"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:textColor="#1B5E20" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
 
             <!-- Years of Experience -->

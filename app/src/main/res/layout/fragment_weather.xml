@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/activity_weather"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".views.WeatherActivity"
+
   >
 
     <!-- Guidelines -->
@@ -25,38 +25,13 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp" />
 
-    <!-- Header with Back and Language Toggle -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/headerCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="0dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="64dp">
-
-            <include
-                android:id="@+id/backButton"
-                layout="@layout/back_button" />
-
-            <include
-                android:id="@+id/langToggle"
-                layout="@layout/lang_toggle"
-                tools:theme="@style/Theme.Aabhaa.Register" />
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
 
     <!-- Scrollable Content -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="@id/headerCard"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd">
 
@@ -410,9 +385,5 @@
 
         </LinearLayout>
     </ScrollView>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        style="@style/AabhaBottomNavStyle"
-        app:menu="@menu/nav_bottom_menu"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+    <!-- Header with back and language toggle -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="28dp" />
+
+    <!-- Header Card with Back and Language Toggle -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/headerCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+
+            <include
+                android:id="@+id/backButton"
+                layout="@layout/back_button" />
+
+            <include
+                android:id="@+id/langToggle"
+                layout="@layout/lang_toggle"
+                tools:theme="@style/Theme.Aabhaa.Register" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:id="@+id/contentContainer"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/headerCard"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+       >
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+   <LinearLayout
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       app:layout_constraintTop_toBottomOf="@id/contentContainer"
+       app:layout_constraintStart_toStartOf="@id/guideline1"
+       app:layout_constraintEnd_toEndOf="@id/guideline2">
+
+       <TextView
+           android:id="@+id/tvyoulike"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="24dp"
+           android:text="You may also like"
+           android:textColor="@color/green"
+           android:textSize="16sp"
+           android:textStyle="bold"
+           />
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rvYouMayAlsoLike"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="8dp"
+           tools:listitem="@layout/item_post_suggestion"
+           android:overScrollMode="never"
+           android:scrollbars="none"
+           android:clipToPadding="false"
+           android:paddingStart="4dp"
+           android:paddingEnd="4dp"
+           />
+   </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

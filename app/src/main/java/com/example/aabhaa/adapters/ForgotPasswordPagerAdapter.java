@@ -1,13 +1,13 @@
-package com.example.aabhaa.adapter;
+package com.example.aabhaa.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.aabhaa.Fragments.ChangePasswordFragment;
-import com.example.aabhaa.Fragments.ForgotPasswordFragment;
-import com.example.aabhaa.Fragments.OtpVerificationFragment;
+import com.example.aabhaa.views.Fragments.ChangePasswordFragment;
+import com.example.aabhaa.views.Fragments.ForgotPasswordFragment;
+import com.example.aabhaa.views.Fragments.OtpVerificationFragment;
 
 public class ForgotPasswordPagerAdapter extends FragmentStateAdapter {
 

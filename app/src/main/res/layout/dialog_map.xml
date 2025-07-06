@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Close Button -->
+    <ImageButton
+        android:id="@+id/btnCloseMapDialog"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+        android:scaleType="centerInside"
+        android:contentDescription="Close"
+        android:layout_gravity="top|start" />
+
+    <!-- Placeholder for dynamically inserted map fragment -->
+    <FrameLayout
+        android:id="@+id/dialogMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

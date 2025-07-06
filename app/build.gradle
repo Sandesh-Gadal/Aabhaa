@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
 }
 
 android {
@@ -40,6 +41,7 @@ dependencies {
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout
+    implementation libs.play.services.location
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
@@ -47,8 +49,28 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.tbuonomo:dotsindicator:4.3'
+
+    //foir circle image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //material ui style
     implementation 'com.google.android.material:material:1.12.0'
+
+    //for video playing and online streaming
+    implementation 'androidx.media3:media3-exoplayer:1.2.1'
+    implementation 'androidx.media3:media3-ui:1.2.1'
+
+
+    //gor google map sdk
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+
+    //load remote images
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
+    //shimmer effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
 
 
 
