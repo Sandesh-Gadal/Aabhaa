@@ -1,6 +1,7 @@
 package com.example.aabhaa.data;
 
 import com.example.aabhaa.R;
+import com.example.aabhaa.models.ChatMessage;
 import com.example.aabhaa.models.Content;
 
 import java.util.ArrayList;
@@ -181,4 +182,44 @@ public class StaticContentProvider {
         }
         return tips;
     }
+
+    public static List<ChatMessage> chatMessages = new ArrayList<>();
+
+    static {
+        chatMessages.add(new ChatMessage(0, 1, "Hello! How can I help you today?", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(1, 0, "Can you tell me which crop suits my soil?", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(2, 1, "Sure! Could you tell me your soil pH level and type?", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(3, 0, "My soil is loamy with a pH of around 6.8.", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(4, 1, "Great! Tomatoes, carrots, and lettuce grow well in loamy soil with that pH.", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(5, 0, "That's good to know. What about rice?", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(6, 1, "Rice grows best in clayey soil with good water retention. Is your field well-irrigated?", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(7, 0, "Yes, we have canal irrigation available year-round.", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(8, 1, "Perfect. Then you can consider growing rice as well, especially during the monsoon.", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(9, 0, "Thanks! Should I add any fertilizer before planting?", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(10, 1, "Yes, use organic compost or NPK fertilizer based on soil testing. Avoid over-fertilizing.", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(11, 0, "How frequently should I water the tomato plants?", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(12, 1, "Tomatoes need deep watering every 2–3 days, more often during hot weather.", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(13, 0, "What’s the ideal temperature range for growing carrots?", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(14, 1, "Carrots prefer cooler climates, around 15–21°C for optimal growth.", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(15, 0, "Which pests should I watch out for when planting leafy greens?", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(16, 1, "Watch out for aphids, cutworms, and snails. Neem oil spray helps a lot.", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(17, 0, "Do I need crop rotation in a small garden?", "text", false, "", ChatMessage.SenderType.USER));
+
+        chatMessages.add(new ChatMessage(18, 1, "Yes, even in small gardens, rotating crops prevents soil depletion and pest buildup.", "text", false, "", ChatMessage.SenderType.EXPERT));
+        chatMessages.add(new ChatMessage(19, 0, "Thank you! This was very helpful.", "text", false, "", ChatMessage.SenderType.USER));
+    }
+
+
+    public static void addMessage(ChatMessage message) {
+        chatMessages.add(message);
+    }
+
 }

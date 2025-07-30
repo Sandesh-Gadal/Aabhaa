@@ -165,35 +165,7 @@
                     android:textColor="#1B5E20" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Email -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Email"
-                android:textSize="18sp"
-                android:textColor="@color/green"
-                android:textStyle="bold" />
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailLayout"
-                style="@style/CustomTextInputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Your Email"
-                app:startIconDrawable="@drawable/ic_email"
-                app:startIconTint="#1B5E20">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColor="#1B5E20" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Gender -->
             <TextView
@@ -205,6 +177,7 @@
                 android:textStyle="bold" />
 
             <RadioGroup
+                android:id="@+id/acvGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -213,17 +186,20 @@
                 >
 
                 <RadioButton
+                    android:id="@+id/rbMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Male"  />
 
                 <RadioButton
+                    android:id="@+id/rbFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Female"
                     android:layout_marginStart="20dp"/>
 
                 <RadioButton
+                    android:id="@+id/rbOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Other"
@@ -290,35 +266,7 @@
 
 
 
-            <!-- Land Size -->
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="15dp"-->
-<!--                android:text="Land Size (in Ropani/Bigha)"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textColor="@color/green"-->
-<!--                android:textStyle="bold" />-->
 
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/LandsizeLayout"-->
-<!--                style="@style/CustomTextInputStyle"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:hint="e.g. 5.5"-->
-<!--                android:inputType="numberDecimal"-->
-<!--                app:startIconDrawable="@drawable/ic_email"-->
-<!--                app:startIconTint="#1B5E20">-->
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/etLandsize"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:imeOptions="actionNext"-->
-<!--                    android:inputType="textPersonName"-->
-<!--                    android:maxLines="1"-->
-<!--                    android:textColor="#1B5E20" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
 
             <!-- Years of Experience -->
@@ -389,6 +337,7 @@
                 android:textStyle="bold" />
 
             <RadioGroup
+                android:id="@+id/acvLanguage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -414,6 +363,7 @@
 
             <!-- Save Button -->
             <Button
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="16dp"

@@ -1,68 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardElevation="4dp"
+    app:strokeColor="@android:color/transparent"
+    android:backgroundTint="@android:color/white">
 
-    <!-- Profile Picture -->
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileImage"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/bg_wheat"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Greeting -->
-    <TextView
-        android:id="@+id/helloText"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello!"
-        android:textSize="14sp"
-        android:textColor="#888888"
-        app:layout_constraintTop_toTopOf="@id/profileImage"
-        app:layout_constraintStart_toEndOf="@id/profileImage"
-        android:layout_marginStart="12dp" />
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="0dp">
 
-    <!-- Name -->
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Abina Bishwokarma"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/aabhaGreen"
-        app:layout_constraintTop_toBottomOf="@id/helloText"
-        app:layout_constraintStart_toStartOf="@id/helloText" />
+        <!-- Start Guideline -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
 
-    <!-- Notification -->
-    <FrameLayout
-        android:id="@+id/notificationContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <!-- End Guideline -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
 
-        <ImageView
-            android:id="@+id/notificationIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_notification"
-            app:tint="@color/aabhaGreen" />
+        <!-- Profile Image -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/bg_wheat"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart" />
 
+        <!-- Greeting -->
         <TextView
-            android:id="@+id/notificationBadge"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="44"
-            android:textSize="8sp"
-            android:padding="3dp"
-            android:textColor="@android:color/white"
-            android:background="@drawable/badge_circle"
-            android:layout_gravity="top|end"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="2dp" />
-    </FrameLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:id="@+id/helloText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello! Welcome"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/profileImage"
+            app:layout_constraintStart_toEndOf="@id/profileImage"
+            android:layout_marginStart="12dp" />
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Abina Bishwokarma"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/aabhaGreen"
+            app:layout_constraintTop_toBottomOf="@id/helloText"
+            app:layout_constraintStart_toStartOf="@id/helloText" />
+
+        <!-- Notification Icon with Badge -->
+        <FrameLayout
+            android:id="@+id/notificationContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/profileImage"
+            app:layout_constraintBottom_toBottomOf="@id/profileImage"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd">
+
+            <ImageView
+                android:id="@+id/notificationIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_notification"
+                app:tint="@color/aabhaGreen" />
+
+            <TextView
+                android:id="@+id/notificationBadge"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/badge_circle"
+                android:text="44"
+                android:paddingVertical="2dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                tools:ignore="RtlCompat" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

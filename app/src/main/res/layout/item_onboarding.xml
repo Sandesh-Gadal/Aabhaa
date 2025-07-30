@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="32dp"
+    android:layout_marginTop="40dp"
+    android:paddingBottom="16dp"
+    android:background="@android:color/white">
+
+    <!-- Title (English) -->
+    <TextView
+        android:id="@+id/tvTitleEnglish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crop Recommendation"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Title (Nepali) -->
+    <TextView
+        android:id="@+id/tvTitleNepali"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="title nepali"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Image -->
+    <ImageView
+        android:id="@+id/imgIllustration"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/obimg1"
+        android:contentDescription="Onboarding image"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Subtitle (Nepali) -->
+    <TextView
+        android:id="@+id/tvSubtitleNepali"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="सही बाली, सही समय , स्मार्ट कृषकको छनोट"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_green"
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Description (English) -->
+    <TextView
+        android:id="@+id/tvDescriptionEnglish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grow What Grows , Best  Smart Crop Choices."
+        android:textSize="18sp"
+        android:textColor="@color/green"
+        android:gravity="center" />
+
+</LinearLayout>

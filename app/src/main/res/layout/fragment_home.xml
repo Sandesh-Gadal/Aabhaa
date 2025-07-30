@@ -1,106 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nestedScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:fillViewport="true">
+    android:background="@android:color/white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <!-- Header OUTSIDE scroll -->
+    <include
+        android:id="@+id/include_header"
+        layout="@layout/section_home_header"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        >
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.03" />
+    <!-- Scrollable content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/include_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Left Guideline -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="24dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!-- Right Guideline -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="24dp" />
+            <!-- Guidelines inside scroll content -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.03" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="24dp" />
 
-        <include
-            android:id="@+id/include_header"
-            layout="@layout/section_home_header"
-            app:layout_constraintTop_toTopOf="@+id/guidelineTop"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="24dp" />
 
-        <include
-            android:id="@+id/include_weather"
-            layout="@layout/section_weather_card"
-            app:layout_constraintTop_toBottomOf="@id/include_header"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            android:layout_width="0dp"
-            android:layout_marginTop="30dp"
-            android:layout_height="wrap_content" />
+            <!-- Other sections remain inside scroll -->
+            <include
+                android:id="@+id/weatherCard"
+                layout="@layout/section_weather_card"
+                app:layout_constraintTop_toTopOf="@id/guidelineTop"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
 
+            <include
+                android:id="@+id/include_crops"
+                layout="@layout/section_suitable_crops"
+                app:layout_constraintTop_toBottomOf="@id/weatherCard"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                android:layout_width="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content" />
 
-        <include
-            android:id="@+id/include_crops"
-            layout="@layout/section_suitable_crops"
-            app:layout_constraintTop_toBottomOf="@id/include_weather"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:layout_width="0dp"
-            android:layout_marginTop="30dp"
-            android:layout_height="wrap_content" />
+            <include
+                android:id="@+id/include_pesticides"
+                layout="@layout/section_pesticide_alerts"
+                app:layout_constraintTop_toBottomOf="@id/include_crops"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                android:layout_width="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content" />
 
+            <include
+                android:id="@+id/include_tips"
+                layout="@layout/section_farming_tips"
+                app:layout_constraintTop_toBottomOf="@id/include_pesticides"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                android:layout_width="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content" />
 
-        <include
-            android:id="@+id/include_pesticides"
-            layout="@layout/section_pesticide_alerts"
-            app:layout_constraintTop_toBottomOf="@id/include_crops"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            android:layout_width="0dp"
-            android:layout_marginTop="30dp"
-            android:layout_height="wrap_content" />
+            <include
+                android:id="@+id/include_slider"
+                layout="@layout/section_article_slider"
+                app:layout_constraintTop_toBottomOf="@id/include_tips"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                android:layout_width="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="80dp"
+                android:layout_height="wrap_content" />
 
-
-        <include
-            android:id="@+id/include_tips"
-            layout="@layout/section_farming_tips"
-            app:layout_constraintTop_toBottomOf="@id/include_pesticides"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            android:layout_width="0dp"
-            android:layout_marginTop="30dp"
-            android:layout_height="wrap_content"  />
-
-        <include
-            android:id="@+id/include_slider"
-            layout="@layout/section_article_slider"
-            app:layout_constraintTop_toBottomOf="@id/include_tips"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="80dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
-
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

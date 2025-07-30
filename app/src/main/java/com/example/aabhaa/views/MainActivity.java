@@ -2,11 +2,15 @@ package com.example.aabhaa.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.aabhaa.controllers.MainController;
+import com.example.aabhaa.controllers.WeatherController;
 import com.example.aabhaa.views.Fragments.CalendarFragment;
 import com.example.aabhaa.views.Fragments.ExploreFragment;
 import com.example.aabhaa.views.Fragments.HomeFragment;
@@ -14,10 +18,14 @@ import com.example.aabhaa.views.Fragments.ProfileFragment;
 import com.example.aabhaa.views.Fragments.WeatherFragment;
 import com.example.aabhaa.R;
 import com.example.aabhaa.databinding.ActivityMainBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private FloatingActionButton fabChatBot;
+    private MainController mainController;
+    private WeatherController weatherController;
     private int currentSelectedItemId = -1; // Initially no selection
 
     @Override
@@ -26,10 +34,24 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Set selected item in BottomNavigationView, triggers onItemSelectedListener or call directly
-        binding.bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
-        // Load Home fragment explicitly since listener may not trigger on initial setSelectedItemId
+        // 💡 Initialize FAB and controller first
+        fabChatBot = findViewById(R.id.fabChatBot);
+        WeatherController weatherController = new WeatherController(getApplicationContext());
+        mainController = new MainController(this , weatherController);
+
+
+        // Init draggable behavior
+        mainController.initDraggableChatBot(fabChatBot,
+                findViewById(R.id.headerCard),
+                findViewById(R.id.bottomNavigationView));
+
+        // Position FAB at bottom-right after layout has rendered
+        fabChatBot.post(() -> mainController.positionFabAtBottomRight(fabChatBot));
+
+        mainController.checkAndRequestLocationPermission(this);
+
+        binding.bottomNavigationView.setSelectedItemId(R.id.nav_home);
         switchFragmentById(R.id.nav_home);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -38,17 +60,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
         handleIntent(getIntent());
+
+        binding.fabChatBot.setOnClickListener(v -> {
+            Log.d("FAB", "FAB clicked!");
+            Toast.makeText(this, "FAB clicked!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ChatActivity.class);
+            startActivity(intent);
+        });
+
+
+
+
     }
+
+
+
 
     public void switchFragmentById(int newItemId) {
         if (newItemId == currentSelectedItemId) return;
 
         Fragment fragment = null;
         boolean hideHeader;
+        boolean showFab = false; // track fab visibility
 
         if (newItemId == R.id.nav_home) {
             fragment = new HomeFragment();
             hideHeader = true;
+            showFab = true ;
         } else {
             hideHeader = false;
             if (newItemId == R.id.nav_calendar) {
@@ -104,6 +142,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         currentSelectedItemId = newItemId;
+
+        // === Fab visibility and position ===
+        if (showFab) {
+            fabChatBot.setVisibility(View.VISIBLE);
+            mainController.positionFabAtBottomRight(fabChatBot);
+        } else {
+            fabChatBot.setVisibility(View.GONE);
+        }
     }
 
     private int getTabIndex(int itemId) {
@@ -147,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
         setIntent(intent); // Update the intent
         handleIntent(intent);
     }
+
+
 
 
 }

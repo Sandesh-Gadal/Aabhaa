@@ -7,11 +7,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aabhaa.R;
+import com.example.aabhaa.controllers.RegisterController;
 import com.example.aabhaa.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
+    private RegisterController registerController;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,11 +21,17 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        registerController = new RegisterController(this, binding);
+
+
 
         binding.btnRegister.setOnClickListener(view ->{
-            Intent intent = new Intent(RegisterActivity.this , LoginActivity.class);
-            startActivity(intent);
-            finish();
+            String fullName = binding.etFullName.getText().toString().trim();
+            String email = binding.etEmail.getText().toString().trim();
+            String password = binding.etPassword.getText().toString().trim();
+            String confirmPassword = binding.etConfirmPassword.getText().toString().trim();
+
+            registerController.handleRegister(fullName, email, password, confirmPassword);
         });
 
         binding.tvSignIn.setOnClickListener(v->{

@@ -21,6 +21,7 @@
 
     <!-- Language Toggle Include -->
     <include
+        android:id="@+id/include"
         layout="@layout/lang_toggle"
         tools:theme="@style/Theme.Aabhaa.Login" />
 
@@ -115,29 +116,22 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="15dp"
         android:orientation="horizontal"
+        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordLayout">
 
-        <CheckBox
-            android:id="@+id/cbRemember"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:buttonTint="#2E7D32"
-            android:text="Remember Me"
-            android:textColor="#2E7D32"
-            android:textSize="16sp" />
-
         <TextView
             android:id="@+id/forgotPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Forget Password?"
             android:textColor="#2E7D32"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="end" />
     </LinearLayout>
+
 
     <!-- Login Button -->
     <Button
@@ -187,6 +181,18 @@
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="68dp"
+
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"

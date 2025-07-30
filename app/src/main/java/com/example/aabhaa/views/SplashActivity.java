@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aabhaa.R;
+import com.example.aabhaa.auth.SharedPrefManager;
 
 public class SplashActivity extends AppCompatActivity {
     ImageView leafImage;
@@ -19,11 +20,27 @@ public class SplashActivity extends AppCompatActivity {
     int currentIndex = 0;
     Runnable dotAnimator;
 
+    SharedPrefManager sharedPrefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
 
+        sharedPrefManager = new SharedPrefManager(this);
+        if (sharedPrefManager.isLoggedIn()) {
+            // User is already logged in, go to home
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        } else {
+            // Not logged in, go to login screen
+            new Handler().postDelayed(() -> {
+                handler.removeCallbacks(dotAnimator); // Stop dot loop
+                startActivity(new Intent(SplashActivity.this, OnboardingActivity.class));
+                finish();
+            }, 200); // Adjusted to match ~1 full dot loop cycle
+        }
+
+        setContentView(R.layout.activity_splash);
         leafImage = findViewById(R.id.leafImage);
 
         Animation bounce = AnimationUtils.loadAnimation(this, R.anim.bounce);
@@ -42,17 +59,13 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 updateDots(currentIndex);
                 currentIndex = (currentIndex + 1) % dots.length;
-                handler.postDelayed(this, 700); // Switch dot every 700ms
+                handler.postDelayed(this, 500); // Switch dot every 700ms
             }
         };
         handler.post(dotAnimator); // Start dot animation loop
 
 //         Go to MainActivity after 3.2 seconds
-        new Handler().postDelayed(() -> {
-            handler.removeCallbacks(dotAnimator); // Stop dot loop
-            startActivity(new Intent(SplashActivity.this,ExploreActivity.class));
-            finish();
-        }, 3200); // Adjusted to match ~1 full dot loop cycle
+
     }
 
     private void updateDots(int currentIndex) {

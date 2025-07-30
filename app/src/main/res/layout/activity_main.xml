@@ -27,16 +27,33 @@ app:cardElevation="4dp">
 </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
 
-<FrameLayout
-android:id="@+id/fragmentContainer"
-android:layout_width="0dp"
-android:layout_height="0dp"
-app:layout_constraintTop_toBottomOf="@id/headerCard"
-app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintEnd_toEndOf="parent" />
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerCard"
+        app:layout_constraintVertical_bias="1.0" />
 
-<com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabChatBot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:tint="@null"
+        app:fabCustomSize="70dp"
+        app:maxImageSize="70dp"
+        app:fabSize="normal"
+        app:elevation="0dp"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/chat"
+        android:contentDescription="chat with expert"
+        android:layout_margin="16dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
 android:id="@+id/bottomNavigationView"
 style="@style/AabhaBottomNavStyle"
 app:menu="@menu/nav_bottom_menu"
