@@ -20,7 +20,7 @@ public class AddressActivity extends FragmentActivity {
         setContentView(binding.getRoot());
 
         // Init controller with UI references
-        addressController = new AddressController(this);
+        addressController = new AddressController(this , getApplicationContext());
         addressController.setBinding(binding);  // Pass view to controller
         addressController.initSmallMap();
 
@@ -33,7 +33,21 @@ public class AddressActivity extends FragmentActivity {
         // UI Logic: Close Map
         binding.btnCloseFullMap.setOnClickListener(v -> {
             binding.fullscreenMapContainer.setVisibility(View.GONE);
+            addressController.removefullMapMarker();
         });
+
+        binding.btnSaveAddress.setOnClickListener(v -> {
+
+            addressController.handleSaveAddress(
+                    binding.etAddresstitle,
+                    binding.acvCategoryProvince,
+                    binding.acvCategoryDistrict,
+                    binding.etLatitude,
+                    binding.etLongitude,
+                    binding.etDescription
+            );
+        });
+
     }
 
     @Override

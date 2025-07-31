@@ -73,6 +73,7 @@ public class LoginController {
                 sharedPrefManager.saveTokens(response.access_token, response.refresh_token);
                 binding.progressBar.setVisibility(View.GONE);
                 context.startActivity(new Intent(context, MainActivity.class));
+                ((Activity) context).finish();
 
 
             }

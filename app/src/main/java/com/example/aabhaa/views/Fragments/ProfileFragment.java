@@ -37,6 +37,7 @@ public class ProfileFragment extends Fragment {
 
     private static final int EDIT_PROFILE_REQUEST = 1001;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -105,12 +106,14 @@ public class ProfileFragment extends Fragment {
         binding = null;
     }
 
+
+
     private void updateUIWithUserData(User user) {
+        if (binding == null || getActivity() == null || !isAdded()) return;
+
         binding.name.setText(user.getFullName());
         binding.phone.setText(user.getPhone());
 
-
-        // Load profile image
         Glide.with(this)
                 .load(user.getProfileImageUrl())
                 .placeholder(R.drawable.bg_wheat)

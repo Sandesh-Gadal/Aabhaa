@@ -70,11 +70,13 @@ public class OnboardingActivity extends AppCompatActivity {
         binding.btnSignIn.setOnClickListener(view ->{
             Intent intent = new Intent (OnboardingActivity.this , LoginActivity.class);
             startActivity(intent);
+            finish();
         });
 
         binding.createAccount.setOnClickListener(view -> {
             Intent intent = new Intent (OnboardingActivity.this , RegisterActivity.class);
             startActivity(intent);
+            finish();
         });
 
         binding.btnNext.setOnClickListener(v -> {

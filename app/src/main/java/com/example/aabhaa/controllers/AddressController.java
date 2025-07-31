@@ -1,20 +1,26 @@
 package com.example.aabhaa.controllers;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.util.Log;
+import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+
+import com.example.aabhaa.data.repository.AddressRepository;
 import com.example.aabhaa.databinding.ActivityAddressBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -45,10 +51,73 @@ public class AddressController {
     private static final double NEPAL_SOUTH = 26.3;
     private static final double NEPAL_NORTH = 30.5;
 
-    public AddressController(FragmentActivity activity) {
+    private final Context context;
+
+    private final AddressRepository addressRepository;
+
+    public AddressController(FragmentActivity activity , Context context) {
+        this.context = context;
         this.activity = activity;
         this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+        this.addressRepository = new AddressRepository(context);
     }
+
+    public void handleSaveAddress(
+            TextInputEditText etAddresstitle,
+            AutoCompleteTextView acvProvince,
+            AutoCompleteTextView acvDistrict,
+            TextInputEditText etLatitude,
+            TextInputEditText etLongitude,
+            TextInputEditText etDescription
+    ) {
+        boolean isValid = true;
+
+        String title = etAddresstitle.getText().toString().trim();
+        String province = acvProvince.getText().toString().trim();
+        String district = acvDistrict.getText().toString().trim();
+        String latStr = etLatitude.getText().toString().trim();
+        String lonStr = etLongitude.getText().toString().trim();
+        String description = etDescription.getText().toString().trim();
+
+        if (title.isEmpty()) {
+            etAddresstitle.setError("Required");
+            isValid = false;
+        }
+        if (province.isEmpty()) {
+            acvProvince.setError("Required");
+            isValid = false;
+        }
+        if (district.isEmpty()) {
+            acvDistrict.setError("Required");
+            isValid = false;
+        }
+        if (latStr.isEmpty()) {
+            etLatitude.setError("Required");
+            isValid = false;
+        }
+        if (lonStr.isEmpty()) {
+            etLongitude.setError("Required");
+            isValid = false;
+        }
+
+        double latitude = 0, longitude = 0;
+        try {
+            latitude = Double.parseDouble(latStr);
+            longitude = Double.parseDouble(lonStr);
+        } catch (NumberFormatException e) {
+            Toast.makeText(context, "Invalid coordinates", Toast.LENGTH_SHORT).show();
+            isValid = false;
+        }
+
+        if (!isValid) return;
+
+        com.example.aabhaa.models.Address address = new com.example.aabhaa.models.Address(
+                title, province, district, latitude, longitude, description
+        );
+
+        addressRepository.sendAddress(address , context);
+    }
+
 
     public void setBinding(ActivityAddressBinding binding) {
         this.binding = binding;
@@ -183,6 +252,7 @@ public class AddressController {
                 Address address = addressList.get(0);
                 binding.acvCategoryProvince.setText(address.getAdminArea());
                 binding.acvCategoryDistrict.setText(address.getSubAdminArea());
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -249,4 +319,12 @@ public class AddressController {
             }
         };
     }
+    public void removefullMapMarker(){
+        if (fullMapMarker != null) {
+            fullMapMarker.remove();
+            fullMapMarker = null;
+        }
+    }
+
+
 }

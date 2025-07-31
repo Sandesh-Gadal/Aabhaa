@@ -15,10 +15,14 @@ public class CloudinaryConfig {
         Map<String, String> config = new HashMap<>();
 
 
-        config.put("cloud_name", "dxslhrq1t");
-        config.put("api_key", "619979357538945");
-        config.put("api_secret","-4O-178_Xx9tMMf7LGEQRLi93wI" );
-        Log.d("CloudinaryConfig", "cloud:inside the config p[ackage " + BuildConfig.CLOUD_NAME + ", key: " + BuildConfig.API_KEY);
+//        config.put("cloud_name", "dxslhrq1t");
+//        config.put("api_key", "619979357538945");
+//        config.put("api_secret","-4O-178_Xx9tMMf7LGEQRLi93wI" );
+
+        config.put("cloud_name", BuildConfig.CLOUDINARY_CLOUD_NAME);
+        config.put("api_key", BuildConfig.CLOUDINARY_API_KEY);
+        config.put("api_secret",BuildConfig.CLOUDINARY_API_KEY );
+        Log.d("CloudinaryConfig", "cloud:inside the config p[ackage " + BuildConfig.CLOUDINARY_CLOUD_NAME + ", key: " + BuildConfig.CLOUDINARY_API_KEY+ ",secret: "+ BuildConfig.CLOUDINARY_API_KEY);
         MediaManager.init(context, config);
     }
 

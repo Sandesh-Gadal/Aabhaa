@@ -12,14 +12,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import com.bumptech.glide.Glide;
+import com.example.aabhaa.R;
+import com.example.aabhaa.controllers.EditProfileController;
 import com.example.aabhaa.controllers.MainController;
+import com.example.aabhaa.controllers.UserProfileCallback;
 import com.example.aabhaa.controllers.WeatherController;
 import com.example.aabhaa.databinding.FragmentHomeBinding;
+import com.example.aabhaa.models.User;
 import com.example.aabhaa.views.NotificationActivity;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+
+    private EditProfileController editProfileController;
 
     @Nullable
     @Override
@@ -44,6 +51,7 @@ public class HomeFragment extends Fragment {
                     requireContext()
             );
         });
+        updateProfileUI();
         return binding.getRoot(); // Inflates activity_home.xml
     }
 
@@ -64,5 +72,25 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null; // Prevent memory leaks
+    }
+
+    private void updateUIWithUserData(User user) {
+        binding.includeHeader.userName.setText(user.getFullName());
+        // Load profile image
+        Glide.with(this)
+                .load(user.getProfileImageUrl())
+                .placeholder(R.drawable.bg_wheat)
+                .into(binding.includeHeader.profileImage);
+    }
+
+    public void updateProfileUI(){
+        editProfileController = new EditProfileController(requireContext());
+
+        editProfileController.fetchUserProfile(new UserProfileCallback() {
+            @Override
+            public void onUserDataFetched(User user) {
+                updateUIWithUserData(user);
+            }
+        });
     }
 }

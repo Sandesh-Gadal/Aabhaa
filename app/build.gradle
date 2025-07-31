@@ -17,12 +17,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // Inject as BuildConfig fields
-        buildConfigField "String", "CLOUD_NAME", "\"${project.properties['CLOUDINARY_CLOUD_NAME']}\""
-        buildConfigField "String", "API_KEY", "\"${project.properties['CLOUDINARY_API_KEY']}\""
-        buildConfigField "String", "API_SECRET", "\"${project.properties['CLOUDINARY_API_SECRET']}\""
+
+    }
+
+    // Load local.properties
+    def localProperties = new Properties()
+    def localPropertiesFile = rootProject.file('local.properties')
+    if (localPropertiesFile.exists()) {
+        localProperties.load(localPropertiesFile.newDataInputStream())
     }
 
     buildTypes {
+        debug{
+            buildConfigField "String", "CLOUD_NAME", "\"${localProperties['CLOUDINARY_CLOUD_NAME']}\""
+            buildConfigField "String", "API_KEY", "\"${localProperties['CLOUDINARY_API_KEY']}\""
+            buildConfigField "String", "API_SECRET", "\"${localProperties['CLOUDINARY_API_SECRET']}\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
