@@ -20,4 +20,10 @@
     <color name="chip_plantation">#03A9F4</color>
     <color name="chip_default">#BDBDBD</color>
 
+    <color name="colorNitrogen">#4CAF50</color>      <!-- Green for Nitrogen -->
+    <color name="colorPhosphorus">#2196F3</color>   <!-- Blue for Phosphorus -->
+    <color name="colorPotassium">#FF9800</color>    <!-- Orange for Potassium -->
+    <color name="colorPH">#9C27B0</color>   <!-- Purple for pH -->
+
+
 </resources>

@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,8 +19,11 @@ public class NotificationActivity extends AppCompatActivity {
         binding = ActivityNotificationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.backButton.btnBack.setOnClickListener(v->{
-
+        binding.backButton.btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("navigate_to", "home");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
             finish();
         });
     }

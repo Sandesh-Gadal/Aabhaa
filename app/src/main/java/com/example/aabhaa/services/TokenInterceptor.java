@@ -26,30 +26,35 @@ public class TokenInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        String accessToken = sharedPrefManager.getAccessToken();
-        Log.d("TokenInterceptor", "Old Access Token: " + accessToken);
-
         Request originalRequest = chain.request();
+        String path = originalRequest.url().encodedPath(); // e.g., /api/login or /api/register
 
-        // Attach the access token to the original request
+//        Log.d("TokenInterceptor", "Intercepted path: " + path);
+
+        // ✅ Skip token logic for login and register only
+        if (path.equals("/api/login") || path.equals("/api/register")) {
+//            Log.d("TokenInterceptor", "Skipping token for: " + path);
+            return chain.proceed(originalRequest); // directly send without token
+        }
+
+        // Attach access token
+        String accessToken = sharedPrefManager.getAccessToken();
         Request requestWithToken = originalRequest.newBuilder()
                 .header("Authorization", "Bearer " + accessToken)
                 .build();
 
         Response response = chain.proceed(requestWithToken);
 
-        if ((response.code() == 500)) {
-            response.close(); // Close the old response to prevent leaks
+        // Refresh logic if access token fails (e.g., 500 or 401)
+        if (response.code() == 500) {
+            response.close(); // prevent leaks
 
             String refreshToken = sharedPrefManager.getRefreshToken();
-            Log.d("TokenInterceptor", "Old Refresh Token: " + refreshToken);
-
             if (refreshToken == null || refreshToken.isEmpty()) {
-                Log.e("TokenInterceptor", "No refresh token available.");
+                sharedPrefManager.clearTokens();
                 throw new IOException("Refresh token missing. Please login again.");
             }
 
-            // Attempt to refresh token
             try {
                 Call<AuthResponse> refreshCall = authService.refresh(new RefreshRequest(refreshToken));
                 retrofit2.Response<AuthResponse> refreshResponse = refreshCall.execute();
@@ -57,31 +62,19 @@ public class TokenInterceptor implements Interceptor {
                 if (refreshResponse.isSuccessful() && refreshResponse.body() != null) {
                     AuthResponse newTokens = refreshResponse.body();
 
-                    Log.d("TokenInterceptor", "New Access Token: " + newTokens.getAccessToken());
+                    sharedPrefManager.saveTokens(newTokens.getAccessToken(), newTokens.getRefreshToken());
 
-                    // Save new tokens
-                    sharedPrefManager.saveTokens(
-                            newTokens.getAccessToken(),
-                            newTokens.getRefreshToken()
-                    );
-
-                    // Retry original request with new token
                     Request newRequest = originalRequest.newBuilder()
                             .header("Authorization", "Bearer " + newTokens.getAccessToken())
                             .build();
 
                     return chain.proceed(newRequest);
                 } else {
-                    String errorBody = refreshResponse.errorBody() != null ?
-                            refreshResponse.errorBody().string() : "No error body";
-                    Log.e("TokenInterceptor", "Token refresh failed: " + errorBody);
-
                     sharedPrefManager.clearTokens();
                     throw new IOException("Token refresh failed. Please login again.");
                 }
 
             } catch (Exception e) {
-                Log.e("TokenInterceptor", "Exception during token refresh", e);
                 sharedPrefManager.clearTokens();
                 throw new IOException("Token refresh error: " + e.getMessage());
             }
@@ -89,4 +82,6 @@ public class TokenInterceptor implements Interceptor {
 
         return response;
     }
+
+
 }

@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
 
 import com.bumptech.glide.Glide;
 import com.example.aabhaa.R;
@@ -20,12 +19,14 @@ import com.example.aabhaa.controllers.EditProfileController;
 import com.example.aabhaa.controllers.UserProfileCallback;
 import com.example.aabhaa.databinding.FragmentProfileBinding;
 import com.example.aabhaa.models.User;
+import com.example.aabhaa.views.AddAddressActivity;
 import com.example.aabhaa.views.AddressActivity;
 import com.example.aabhaa.views.CropDetailsActivity;
 import com.example.aabhaa.views.EditProfileActivity;
 import com.example.aabhaa.views.ForgotpasswordActivity;
 import com.example.aabhaa.views.LoginActivity;
 import com.example.aabhaa.views.SoilActivity;
+import com.example.aabhaa.views.SoilListActivity;
 
 
 public class ProfileFragment extends Fragment {
@@ -85,7 +86,7 @@ public class ProfileFragment extends Fragment {
         });
 
         binding.soil.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), SoilActivity.class);
+            Intent intent = new Intent(requireContext(), SoilListActivity.class);
             startActivity(intent);
         });
 

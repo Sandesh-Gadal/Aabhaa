@@ -7,6 +7,7 @@ import com.example.aabhaa.data.repository.AuthRepository;
 import com.example.aabhaa.databinding.ActivityRegisterBinding;
 import com.example.aabhaa.services.AuthService;
 import com.example.aabhaa.services.RetrofitClient;
+import com.example.aabhaa.utils.JwtUtils;
 
 public class SharedPrefManager {
     private static final String PREF_NAME = "auth_prefs";
@@ -53,8 +54,21 @@ public class SharedPrefManager {
         sharedPreferences.edit().clear().apply();
     }
 
+    public void clearAccessTokenOnly() {
+        sharedPreferences.edit()
+                .remove(KEY_ACCESS_TOKEN)
+                .apply();
+    }
+
+
     public boolean isLoggedIn() {
-        return getAccessToken() != null;
+        String token = getAccessToken();
+        if (token != null && !JwtUtils.isTokenExpired(token)) {
+            return true;
+        } else {
+            clearAccessTokenOnly(); // Optional: clear if expired
+            return false;
+        }
     }
 
     public void saveLocation(double lat, double lon) {

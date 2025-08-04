@@ -68,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.backButton.btnBack.setOnClickListener(v -> {
+            binding.bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
+        });
+
+
+
 
 
 

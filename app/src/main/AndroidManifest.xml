@@ -35,7 +35,7 @@
         </activity>
 
         <activity
-            android:name=".views.AddressActivity"
+            android:name=".views.AddAddressActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
 
@@ -55,6 +55,8 @@
         <activity android:name=".views.LoginActivity" />
         <activity android:name=".views.ChatActivity"/>
         <activity android:name=".views.RegisterActivity" />
+        <activity android:name=".views.SoilListActivity" />
+        <activity android:name=".views.AddressActivity" />
     </application>
 
 </manifest>

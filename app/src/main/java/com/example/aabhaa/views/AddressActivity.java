@@ -1,14 +1,16 @@
 package com.example.aabhaa.views;
 
-import android.os.Bundle;
-import android.view.View;
 
-import androidx.fragment.app.FragmentActivity;
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aabhaa.controllers.AddressController;
 import com.example.aabhaa.databinding.ActivityAddressBinding;
 
-public class AddressActivity extends FragmentActivity {
+public class AddressActivity extends AppCompatActivity {
 
     private ActivityAddressBinding binding;
     private AddressController addressController;
@@ -19,41 +21,28 @@ public class AddressActivity extends FragmentActivity {
         binding = ActivityAddressBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Init controller with UI references
+        // Set title text or other logic
+        binding.headerTitle.setText("Add Address");
+
         addressController = new AddressController(this , getApplicationContext());
-        addressController.setBinding(binding);  // Pass view to controller
-        addressController.initSmallMap();
 
-        // UI Logic: Expand Map
-        binding.btnExpandMap.setOnClickListener(v -> {
-            binding.fullscreenMapContainer.setVisibility(View.VISIBLE);
-            addressController.loadFullMap(); // Just load it
+        addressController.populateAddressRecyclerView(this,binding.recyclerViewAddresses);
+
+
+        binding.backButton.btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("navigate_to", "profile");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
         });
 
-        // UI Logic: Close Map
-        binding.btnCloseFullMap.setOnClickListener(v -> {
-            binding.fullscreenMapContainer.setVisibility(View.GONE);
-            addressController.removefullMapMarker();
+        binding.btnAddAddress.setOnClickListener(v->{
+ Intent intent = new Intent(getApplicationContext() , AddAddressActivity.class);
+            startActivity(intent);
         });
 
-        binding.btnSaveAddress.setOnClickListener(v -> {
-
-            addressController.handleSaveAddress(
-                    binding.etAddresstitle,
-                    binding.acvCategoryProvince,
-                    binding.acvCategoryDistrict,
-                    binding.etLatitude,
-                    binding.etLongitude,
-                    binding.etDescription
-            );
-        });
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        addressController.handlePermissionResult(requestCode, grantResults);
+        // TODO: Load address data or initialize RecyclerView if you have one
     }
 }
 

@@ -4,18 +4,24 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
+
 import android.location.Geocoder;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.aabhaa.adapters.AddressAdapter;
 import com.example.aabhaa.data.repository.AddressRepository;
-import com.example.aabhaa.databinding.ActivityAddressBinding;
+import com.example.aabhaa.databinding.ActivityAddAddressBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.*;
@@ -25,13 +31,14 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class AddressController {
 
     private final FragmentActivity activity;
-    private ActivityAddressBinding binding;
+    private ActivityAddAddressBinding binding;
 
     private GoogleMap smallMap;
     private GoogleMap fullMap;
@@ -112,14 +119,14 @@ public class AddressController {
         if (!isValid) return;
 
         com.example.aabhaa.models.Address address = new com.example.aabhaa.models.Address(
-                title, province, district, latitude, longitude, description
+                -1 , title, province, district, latitude, longitude, description
         );
 
         addressRepository.sendAddress(address , context);
     }
 
 
-    public void setBinding(ActivityAddressBinding binding) {
+    public void setBinding(ActivityAddAddressBinding binding) {
         this.binding = binding;
     }
 
@@ -325,6 +332,51 @@ public class AddressController {
             fullMapMarker = null;
         }
     }
+
+
+    public void fetchAddressIntoSpinner(Context context, Spinner spinner, AddressFetchCallback addressFetchCallback) {
+        addressRepository.fetchAddresses(context, new AddressFetchCallback() {
+
+            @Override
+            public void onAddressesFetched(List<com.example.aabhaa.models.Address> addressList) {
+                if (addressList == null || addressList.isEmpty()) {
+                    return;
+                }
+
+                List<String> spinnerItems = new ArrayList<>();
+                for (com.example.aabhaa.models.Address userAddress : addressList) {
+                    spinnerItems.add(userAddress.getSpinnerAddress());
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, spinnerItems);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+
+                // Let activity know about the full list
+                addressFetchCallback.onAddressesFetched(addressList);
+
+            }
+        });
+    }
+
+    public void populateAddressRecyclerView(Context context, RecyclerView recyclerView) {
+        addressRepository.fetchAddresses(context, new AddressFetchCallback() {
+            @Override
+            public void onAddressesFetched(List<com.example.aabhaa.models.Address> addressList) {
+                if (addressList == null || addressList.isEmpty()) {
+
+                    Toast.makeText(context, "No address to show", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                AddressAdapter adapter = new AddressAdapter(context, addressList);
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(adapter);
+            }
+        });
+    }
+
+
 
 
 }

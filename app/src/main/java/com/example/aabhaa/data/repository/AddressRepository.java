@@ -3,13 +3,22 @@ package com.example.aabhaa.data.repository;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.aabhaa.controllers.AddressFetchCallback;
 import com.example.aabhaa.models.Address;
 import com.example.aabhaa.services.AddressService;
 import com.example.aabhaa.services.RetrofitClient;
 import com.example.aabhaa.views.Fragments.ProfileFragment;
 import com.example.aabhaa.views.MainActivity;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -60,5 +69,35 @@ public class AddressRepository {
             }
         });
     }
+
+    public void fetchAddresses(Context context, AddressFetchCallback callback) {
+        AddressService service = RetrofitClient.getClient(context).create(AddressService.class);
+
+        service.getUserAddresses().enqueue(new Callback<List<Address>>() {
+            @Override
+            public void onResponse(Call<List<Address>> call, Response<List<Address>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d("RESPONSE_BODY", new Gson().toJson(response.body()));
+
+                    for (Address addr : response.body()) {
+                        Log.d("PARSED_ADDRESS", "Lat: " + addr.getLatitude() + ", Lng: " + addr.getLongitude());
+                    }
+
+                    callback.onAddressesFetched(response.body());
+                } else {
+                    Toast.makeText(context, "No address found", Toast.LENGTH_SHORT).show();
+                    callback.onAddressesFetched(new ArrayList<>()); // empty list fallback
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Address>> call, Throwable t) {
+                Toast.makeText(context, "Failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                callback.onAddressesFetched(new ArrayList<>()); // empty list fallback
+            }
+        });
+    }
+
+
 }
 
