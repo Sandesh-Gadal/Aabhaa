@@ -35,6 +35,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AddressController {
 
     private final FragmentActivity activity;
@@ -61,6 +65,7 @@ public class AddressController {
     private final Context context;
 
     private final AddressRepository addressRepository;
+    private AddressAdapter adapter;
 
     public AddressController(FragmentActivity activity , Context context) {
         this.context = context;
@@ -372,6 +377,27 @@ public class AddressController {
                 AddressAdapter adapter = new AddressAdapter(context, addressList);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(adapter);
+            }
+        });
+    }
+
+    public void deleteAddress(int position, com.example.aabhaa.models.Address address) {
+
+
+        addressRepository.deleteAddress(address.getId(), new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Address deleted", Toast.LENGTH_SHORT).show();
+                    adapter.removeAddressAt(position);
+                } else {
+                    Toast.makeText(context, "Failed to delete address", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

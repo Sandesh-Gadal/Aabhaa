@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.reflect.KFunction;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -98,6 +99,13 @@ public class AddressRepository {
         });
     }
 
+
+
+
+    public void deleteAddress(int id, Callback<Void> callback) {
+        Call<Void> call = addressService.deleteAddress(id);
+        call.enqueue(callback);
+    }
 
 }
 

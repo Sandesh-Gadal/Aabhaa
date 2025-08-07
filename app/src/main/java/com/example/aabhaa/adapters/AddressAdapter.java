@@ -1,20 +1,27 @@
 package com.example.aabhaa.adapters;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aabhaa.R;
+import com.example.aabhaa.controllers.AddressController;
 import com.example.aabhaa.models.Address;
 import com.example.aabhaa.views.AddAddressActivity;
+import com.example.aabhaa.views.AddressActivity;
 
 import java.util.List;
 
@@ -22,9 +29,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     private List<Address> addressList;
     private Context context;
 
+    private AddressController addressController;
+
     public AddressAdapter(Context context, List<Address> addressList) {
         this.context = context;
         this.addressList = addressList;
+
 
     }
 
@@ -57,6 +67,19 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
             context.startActivity(intent);
         });
+
+        holder.btnViewAddress.setOnClickListener(v -> {
+            ((Activity)context).runOnUiThread(() -> {
+                showAddressDetailsDialog(context, addressList.get(position));
+            });
+        });
+
+        holder.btnDeleteAddress.setOnClickListener(v -> {
+            addressController.deleteAddress(position, address); // Just pass it to controller
+        });
+
+
+
     }
 
     @Override
@@ -79,5 +102,45 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
             btnDeleteAddress = itemView.findViewById(R.id.btnDeleteAddress);
         }
     }
+
+    public void showAddressDetailsDialog(Context context, Address address) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_address_details);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(true);
+
+        // Bind views
+        TextView tvId = dialog.findViewById(R.id.tvId);
+        TextView tvTitle = dialog.findViewById(R.id.tvTitle);
+        TextView tvProvince = dialog.findViewById(R.id.tvProvince);
+        TextView tvDistrict = dialog.findViewById(R.id.tvDistrict);
+        TextView tvLatitude = dialog.findViewById(R.id.tvLatitude);
+        TextView tvLongitude = dialog.findViewById(R.id.tvLongitude);
+        TextView tvDescription = dialog.findViewById(R.id.tvDescription);
+        ImageView btnClose = dialog.findViewById(R.id.btnClose);
+
+        // Set data
+        tvId.setText(String.valueOf(address.getId()));
+        tvTitle.setText(address.getTitle());
+        tvProvince.setText(address.getProvince());
+        tvDistrict.setText(address.getDistrict());
+        tvLatitude.setText(String.valueOf(address.getLatitude()));
+        tvLongitude.setText(String.valueOf(address.getLongitude()));
+        tvDescription.setText(address.getDescription());
+
+        // Close button
+        btnClose.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
+    }
+
+    public void removeAddressAt(int position) {
+        addressList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, addressList.size());
+    }
+
+
 }
 

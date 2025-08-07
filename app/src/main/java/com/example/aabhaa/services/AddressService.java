@@ -7,8 +7,10 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface AddressService {
     @POST("address/add")
@@ -16,4 +18,8 @@ public interface AddressService {
 
     @GET("user/addresses")
     Call<List<Address>> getUserAddresses();
+
+    @DELETE("address/delete/{id}")
+    Call<Void> deleteAddress(@Path("id") int id);
+
 }
