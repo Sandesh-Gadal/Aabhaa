@@ -1,9 +1,11 @@
 package com.example.aabhaa.services;
 
 import com.example.aabhaa.auth.AuthResponse;
+import com.example.aabhaa.auth.ChangePasswordRequest;
 import com.example.aabhaa.auth.LoginRequest;
 import com.example.aabhaa.auth.RefreshRequest;
 import com.example.aabhaa.auth.RegisterRequest;
+import com.example.aabhaa.models.ApiResponse;
 import com.example.aabhaa.models.Weather;
 
 import java.util.List;
@@ -29,6 +31,9 @@ public interface AuthService {
 
     @POST("weather/fetch")
     Call<List<Weather>> getWeatherData();
+
+    @POST("user/change-password")
+    Call<ApiResponse> changePassword(@Body ChangePasswordRequest request);
 
 
 

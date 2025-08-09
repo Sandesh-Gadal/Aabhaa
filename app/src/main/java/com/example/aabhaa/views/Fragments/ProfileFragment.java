@@ -23,8 +23,10 @@ import com.example.aabhaa.views.AddAddressActivity;
 import com.example.aabhaa.views.AddressActivity;
 import com.example.aabhaa.views.CropDetailsActivity;
 import com.example.aabhaa.views.EditProfileActivity;
+import com.example.aabhaa.views.FAQActivity;
 import com.example.aabhaa.views.ForgotpasswordActivity;
 import com.example.aabhaa.views.LoginActivity;
+import com.example.aabhaa.views.SendIssueActivity;
 import com.example.aabhaa.views.SoilActivity;
 import com.example.aabhaa.views.SoilListActivity;
 
@@ -82,6 +84,12 @@ public class ProfileFragment extends Fragment {
 
         binding.changePassword.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), ForgotpasswordActivity.class);
+            intent.putExtra("start_position" , 2);
+            startActivity(intent);
+        });
+
+        binding.reportIssue.setOnClickListener(v->{
+            Intent intent = new Intent(requireContext() , SendIssueActivity.class);
             startActivity(intent);
         });
 
@@ -89,6 +97,11 @@ public class ProfileFragment extends Fragment {
             Intent intent = new Intent(requireContext(), SoilListActivity.class);
             startActivity(intent);
         });
+
+        binding.faq.setOnClickListener((v->{
+            Intent intent = new Intent(requireContext() , FAQActivity.class);
+            startActivity(intent);
+        }));
 
         binding.logout.setOnClickListener(v->{
             // Clear tokens from shared prefs
@@ -106,7 +119,6 @@ public class ProfileFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
 
     private void updateUIWithUserData(User user) {

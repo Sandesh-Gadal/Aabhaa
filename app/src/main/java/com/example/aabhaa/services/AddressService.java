@@ -10,6 +10,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface AddressService {
@@ -21,5 +22,9 @@ public interface AddressService {
 
     @DELETE("address/delete/{id}")
     Call<Void> deleteAddress(@Path("id") int id);
+
+    @PUT("address/update/{id}")
+    Call<Void> updateAddress(@Path("id") int id, @Body Address address);
+
 
 }

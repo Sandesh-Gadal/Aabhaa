@@ -1,6 +1,7 @@
 package com.example.aabhaa.controllers;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -72,9 +73,12 @@ public class AddressController {
         this.activity = activity;
         this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
         this.addressRepository = new AddressRepository(context);
+
     }
 
     public void handleSaveAddress(
+            int addressId,
+            boolean isEditMode,
             TextInputEditText etAddresstitle,
             AutoCompleteTextView acvProvince,
             AutoCompleteTextView acvDistrict,
@@ -124,10 +128,16 @@ public class AddressController {
         if (!isValid) return;
 
         com.example.aabhaa.models.Address address = new com.example.aabhaa.models.Address(
-                -1 , title, province, district, latitude, longitude, description
+                addressId, title, province, district, latitude, longitude, description
         );
 
-        addressRepository.sendAddress(address , context);
+        if (isEditMode) {
+            // call update API
+            addressRepository.updateAddress(address, context);
+        } else {
+            // call save API
+            addressRepository.sendAddress(address, context);
+        }
     }
 
 
@@ -382,25 +392,38 @@ public class AddressController {
     }
 
     public void deleteAddress(int position, com.example.aabhaa.models.Address address) {
+        new AlertDialog.Builder(context)
+                .setTitle("Delete Address")
+                .setMessage("Are you sure you want to delete this address?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    // User confirmed deletion
+                    addressRepository.deleteAddress(address.getId(), new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(context, "Address deleted", Toast.LENGTH_SHORT).show();
+                                adapter.removeAddressAt(position);
+                            } else {
+                                Toast.makeText(context, "Failed to delete address", Toast.LENGTH_SHORT).show();
+                            }
+                        }
 
-
-        addressRepository.deleteAddress(address.getId(), new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(context, "Address deleted", Toast.LENGTH_SHORT).show();
-                    adapter.removeAddressAt(position);
-                } else {
-                    Toast.makeText(context, "Failed to delete address", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    dialog.dismiss(); // Just close the dialog
+                })
+                .show();
     }
+
+    public void setAdapter(AddressAdapter adapter) {
+        this.adapter = adapter;
+    }
+
 
 
 

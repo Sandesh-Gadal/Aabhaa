@@ -34,19 +34,43 @@
         app:cardElevation="4dp"
         app:cardCornerRadius="0dp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp">
+            android:layout_height="64dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
 
+            <!-- Back Button Include -->
             <include
                 android:id="@+id/backButton"
-                layout="@layout/back_button" />
+                layout="@layout/back_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
+            <!-- Header Title -->
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report Issue"
+                android:textColor="@color/dark_green"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.7" />
+
+            <!-- Language Toggle Include -->
             <include
                 android:id="@+id/langToggle"
                 layout="@layout/lang_toggle"
-                tools:theme="@style/Theme.Aabhaa.Register" />
-        </RelativeLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <!-- Form Fields Container -->
@@ -66,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Select crop"
+            android:text="Title"
             android:textSize="18sp"
             android:textColor="@color/green"
             android:textStyle="bold" />
@@ -74,17 +98,18 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:hint="Choose your crop"
-            android:layout_marginTop="8dp">
+            android:hint="Describe your issue here.."
+            style="@style/CustomTextInputStyle"
+            android:layout_marginTop="4dp">
 
-            <AutoCompleteTextView
-                android:id="@+id/acvCategoryCrop"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
-                android:inputType="none"
-                android:background="@null"
-                android:paddingStart="16dp" />
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="4"
+                android:textColor="#1B5E20" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Category -->
@@ -193,7 +218,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPublish"
             style="@style/AabhaaButtonStyle"
-            android:text="Request Help"
+            android:text="Send Issue"
            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

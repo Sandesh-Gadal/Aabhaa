@@ -7,11 +7,18 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.aabhaa.controllers.SoilFetchCallback;
 import com.example.aabhaa.models.Soil;
+import com.example.aabhaa.models.SoilResponse;
 import com.example.aabhaa.services.SoilService;
 import com.example.aabhaa.views.MainActivity;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -75,6 +82,43 @@ public class SoilRepository {
                 Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void  fetchSoilData(Context context , SoilFetchCallback callback){
+        Call<SoilResponse> call = soilService.getUserSoilData();
+        Map<Integer, String> addressTitleMap = new HashMap<>();
+
+
+        call.enqueue(new Callback <SoilResponse>() {
+            @Override
+            public void onResponse(Call <SoilResponse> call, Response<SoilResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Soil> soilList = response.body().getData();
+
+                    // TODO: Handle the soilList (e.g., show in RecyclerView)
+                    for (Soil soil : soilList) {
+
+                        Log.d("SoilData", "Type: " + soil.getId() + ", pH: " + soil.getPh());
+                    }
+                    callback.onSoilFetched(soilList);
+                } else {
+                    Toast.makeText(context, "No Soil data found", Toast.LENGTH_SHORT).show();
+                    Log.e("SoilData", "Response unsuccessful or empty");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SoilResponse> call, Throwable t) {
+                Toast.makeText(context, "No Soil data found", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+    }
+
+    public void deleteSoilData(int id, Callback<Void> callback) {
+        Call<Void> call = soilService.deleteSoilData(id);
+        call.enqueue(callback);
     }
 
 

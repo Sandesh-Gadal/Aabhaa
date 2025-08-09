@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.aabhaa.controllers.MainController;
 import com.example.aabhaa.controllers.WeatherController;
+import com.example.aabhaa.utils.CustomToast;
 import com.example.aabhaa.views.Fragments.CalendarFragment;
 import com.example.aabhaa.views.Fragments.ExploreFragment;
 import com.example.aabhaa.views.Fragments.HomeFragment;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         fabChatBot.post(() -> mainController.positionFabAtBottomRight(fabChatBot));
 
         mainController.checkAndRequestLocationPermission(this);
+
+
 
         binding.bottomNavigationView.setSelectedItemId(R.id.nav_home);
         switchFragmentById(R.id.nav_home);

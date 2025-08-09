@@ -57,6 +57,9 @@
         <activity android:name=".views.RegisterActivity" />
         <activity android:name=".views.SoilListActivity" />
         <activity android:name=".views.AddressActivity" />
+        <activity android:name=".views.FAQActivity"/>
+        <activity android:name=".views.SendIssueActivity"/>
+
     </application>
 
 </manifest>

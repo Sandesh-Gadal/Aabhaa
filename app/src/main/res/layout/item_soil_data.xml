@@ -69,7 +69,7 @@
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_eye"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="15dp"
                     android:contentDescription="View"
                     />
 
@@ -80,7 +80,7 @@
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_delete"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="15dp"
                     android:contentDescription="Delete"
                     />
             </LinearLayout>
@@ -112,6 +112,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/tvN"
                     android:text="45"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -137,6 +138,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/tvP"
                     android:text="32"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -162,6 +164,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/tvK"
                     android:text="28"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -187,6 +190,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/tvPH"
                     android:text="6.8"
                     android:textColor="@color/black"
                     android:textStyle="bold"

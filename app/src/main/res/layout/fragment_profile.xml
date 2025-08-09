@@ -276,7 +276,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/help_support"
+                android:id="@+id/reportIssue"
                 style="@style/MenuCardStyle">
 
                 <LinearLayout
@@ -297,7 +297,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Help &amp; Support"
+                        android:text="Report an Issue"
                         android:textColor="@color/green"
                         android:textSize="16sp"
                         android:textStyle="bold" />

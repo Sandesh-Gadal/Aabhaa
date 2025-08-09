@@ -21,6 +21,7 @@ import com.example.aabhaa.controllers.ContentDetailController;
 import com.example.aabhaa.data.StaticContentProvider;
 import com.example.aabhaa.databinding.ActivityContentDetailsBinding;
 import com.example.aabhaa.models.Content;
+import com.example.aabhaa.utils.CustomToast;
 
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class ContentDetailsActivity extends AppCompatActivity {
         if (content != null) {
             inflateContent(content);
         }
+        CustomToast.showToast(this,null,"Welcome Back");
 
         binding.backButton.btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);

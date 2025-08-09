@@ -23,7 +23,7 @@ public class Address {
     // Required no-args constructor for Gson
     public Address() {}
 
-    public static int getId() {
+    public  int getId() {
         return id;
     }
 

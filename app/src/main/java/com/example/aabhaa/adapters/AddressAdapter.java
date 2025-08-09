@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aabhaa.R;
@@ -34,7 +36,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     public AddressAdapter(Context context, List<Address> addressList) {
         this.context = context;
         this.addressList = addressList;
-
+        if (context instanceof FragmentActivity) {
+            addressController = new AddressController((FragmentActivity) context, context);
+            addressController.setAdapter(this);  // set adapter here once!
+        }
 
     }
 
@@ -75,8 +80,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         });
 
         holder.btnDeleteAddress.setOnClickListener(v -> {
-            addressController.deleteAddress(position, address); // Just pass it to controller
+            if (addressController != null) {
+                addressController.deleteAddress(position, address);
+            } else {
+                Toast.makeText(context, "Unable to delete. Invalid controller.", Toast.LENGTH_SHORT).show();
+            }
         });
+
 
 
 

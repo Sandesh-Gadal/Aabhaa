@@ -107,5 +107,35 @@ public class AddressRepository {
         call.enqueue(callback);
     }
 
+    public void updateAddress(Address address, Context context) {
+        Call<Void> call = addressService.updateAddress(address.getId(), address);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Address updated successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra("navigate_to", "profile");
+                    
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    context.startActivity(intent);
+
+                    if (context instanceof Activity) {
+                        ((Activity) context).finish();
+                    }
+                } else {
+                    Toast.makeText(context, "Failed to update address", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }
 

@@ -1,6 +1,9 @@
 package com.example.aabhaa.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -26,6 +29,16 @@ ForgotpasswordActivity extends AppCompatActivity {
         ForgotPasswordPagerAdapter adapter = new ForgotPasswordPagerAdapter(this);
         viewPager.setAdapter(adapter);
         dotsIndicator.setViewPager2(viewPager);
+
+       Intent intent = getIntent();
+        int startPosition = intent.getIntExtra("start_position", 0);
+        Log.d("view",""+startPosition);
+       if( intent != null ){
+           // Disable swipe navigation
+           viewPager.setUserInputEnabled(false);
+           dotsIndicator.setVisibility(View.GONE);
+           viewPager.setCurrentItem(startPosition, false); // false = no animation on open
+       }
     }
 }
 

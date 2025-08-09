@@ -17,6 +17,7 @@ public class AddAddressActivity extends FragmentActivity {
     private AddressController addressController;
 
     public  boolean isEditMode = false;
+    int addressId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class AddAddressActivity extends FragmentActivity {
 
 
         if (intent != null) {
-            int addressId = intent.getIntExtra("id", -1);
+            addressId = intent.getIntExtra("id", -1);
             String title = intent.getStringExtra("title");
             String province = intent.getStringExtra("province");
             String district = intent.getStringExtra("district");
@@ -87,6 +88,8 @@ public class AddAddressActivity extends FragmentActivity {
         binding.btnSaveAddress.setOnClickListener(v -> {
 
             addressController.handleSaveAddress(
+                    addressId,
+                    isEditMode,
                     binding.etAddresstitle,
                     binding.acvCategoryProvince,
                     binding.acvCategoryDistrict,

@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.aabhaa.models.ApiResponse;
 import com.example.aabhaa.models.User;
 import com.example.aabhaa.data.repository.UserRepository;
 import com.example.aabhaa.views.MainActivity;
@@ -189,5 +191,44 @@ public class EditProfileController {
             }
         });
     };
+
+    public void changePassword(EditText currentPassword, EditText newPassword, EditText newPasswordConfirm, final ControllerCallback callback) {
+        // Simple validation example
+
+        String currentpassword = currentPassword.getText().toString().trim();
+        String newpassword = newPassword.getText().toString().trim();
+        String confirmpassword = newPasswordConfirm.getText().toString().trim();
+        if (currentpassword == null || currentpassword.isEmpty() || currentpassword.length() < 8) {
+            currentPassword.setError("Password must be at least 8 characters and not empty");
+            callback.onError("Current password is required");
+            return;
+        }
+        if (newpassword == null || newpassword.length() < 8) {
+            newPassword.setError("New password must be at least 8 characters");
+            callback.onError("New password must be at least 8 characters");
+            return;
+        }
+        if (!newpassword.equals(confirmpassword)) {
+            newPassword.setError("Does not match with confirm password");
+            newPasswordConfirm.setError("Doesnot match with the new password");
+            callback.onError("New password and confirmation do not match");
+            return;
+        }
+
+        userRepository.changePassword(currentpassword, newpassword, confirmpassword, new RepositoryCallback<ApiResponse>() {
+            @Override
+            public void onSuccess(ApiResponse data) {
+                currentPassword.setError(null);
+                newPassword.setError(null);
+                newPasswordConfirm.setError(null);
+                callback.onSuccess(data.getMessage());
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
 
 }

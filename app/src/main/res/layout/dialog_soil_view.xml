@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="8dp"
+    android:layout_margin="24dp"
+    android:background="@android:color/white"
+    android:padding="30dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <!-- Close Button -->
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_close"
+            android:contentDescription="Close" />
+
+        <!-- Table layout -->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"
+            android:layout_marginTop="16dp">
+
+            <TableRow>
+                <TextView style="@style/KeyStyle" android:text="ID:"/>
+                <TextView android:id="@+id/tvId" style="@style/ValueStyle"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView style="@style/KeyStyle" android:text="Address:"/>
+                <TextView android:id="@+id/tvTitle" style="@style/ValueStyle"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView style="@style/KeyStyle" android:text="Latitude:"/>
+                <TextView android:id="@+id/tvLatitude" style="@style/ValueStyle"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView style="@style/KeyStyle" android:text="Longitude:"/>
+                <TextView android:id="@+id/tvLongitude" style="@style/ValueStyle"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView style="@style/KeyStyle" android:text="N (kg):"/>
+                <TextView android:id="@+id/tvN" style="@style/ValueStyle"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView style="@style/KeyStyle" android:text="P (kg):"/>
+                <TextView android:id="@+id/tvP" style="@style/ValueStyle"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView style="@style/KeyStyle" android:text="K (kg):"/>
+                <TextView android:id="@+id/tvK" style="@style/ValueStyle"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView style="@style/KeyStyle" android:text="pH:"/>
+                <TextView android:id="@+id/tvPH" style="@style/ValueStyle"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
