@@ -9,6 +9,7 @@ import com.example.aabhaa.models.ApiResponse;
 import com.example.aabhaa.models.Weather;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -34,6 +35,9 @@ public interface AuthService {
 
     @POST("user/change-password")
     Call<ApiResponse> changePassword(@Body ChangePasswordRequest request);
+
+    @POST("forgot-password")
+    Call<Void> sendOtp(@Body Map<String, String> request);
 
 
 

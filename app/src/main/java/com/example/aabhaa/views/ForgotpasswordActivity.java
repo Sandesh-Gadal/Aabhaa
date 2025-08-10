@@ -1,19 +1,15 @@
 package com.example.aabhaa.views;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.example.aabhaa.R;
 import com.example.aabhaa.adapters.ForgotPasswordPagerAdapter;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
-public class
-ForgotpasswordActivity extends AppCompatActivity {
+public class ForgotpasswordActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private DotsIndicator dotsIndicator;
 
@@ -28,20 +24,38 @@ ForgotpasswordActivity extends AppCompatActivity {
         // Set up ViewPager with FragmentStateAdapter
         ForgotPasswordPagerAdapter adapter = new ForgotPasswordPagerAdapter(this);
         viewPager.setAdapter(adapter);
-        dotsIndicator.setViewPager2(viewPager);
+        viewPager.setCurrentItem(0, false);
+        viewPager.setUserInputEnabled(false);
 
-       Intent intent = getIntent();
-        int startPosition = intent.getIntExtra("start_position", 0);
-        Log.d("view",""+startPosition);
-       if( intent != null ){
-           // Disable swipe navigation
-           viewPager.setUserInputEnabled(false);
-           dotsIndicator.setVisibility(View.GONE);
-           viewPager.setCurrentItem(startPosition, false); // false = no animation on open
-       }
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("start_position")) {
+            int startPosition = intent.getIntExtra("start_position", 0);
+            Log.d("view", "" + startPosition);
+
+            // Hide dots indicator and don't set it up
+            dotsIndicator.setVisibility(View.GONE);
+            viewPager.setCurrentItem(startPosition, false);
+        } else {
+            // Only set up dots indicator when we actually want to show it
+            setupDotsIndicator();
+        }
+    }
+
+    private void setupDotsIndicator() {
+        dotsIndicator.setViewPager2(viewPager);
+        dotsIndicator.setOnTouchListener((v, event) -> true);
+
+        // Disable clicks for the dots indicator and all its children
+        dotsIndicator.setClickable(false);
+        dotsIndicator.setFocusable(false);
+
+        for (int i = 0; i < dotsIndicator.getChildCount(); i++) {
+            View dot = dotsIndicator.getChildAt(i);
+            dot.setClickable(false);
+            dot.setFocusable(false);
+            dot.setOnTouchListener((v, event) -> true);
+        }
+
+        dotsIndicator.setVisibility(View.VISIBLE);
     }
 }
-
-//for next section call
-//((FtpFragment) getParentFragment()).loadStepFragment(2); // For OTP step
-//((ForgotpasswordActivity) getActivity()).viewPager.setCurrentItem(1, true); // For OTP

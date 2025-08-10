@@ -231,4 +231,36 @@ public class EditProfileController {
         });
     }
 
+    public void sendOtpToEmail(EditText email, ControllerCallback callback) {
+        String emailStr = email.getText().toString().trim();
+
+        // Simple regex for email validation
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if (emailStr.isEmpty()) {
+            email.setError("Email cannot be empty");
+            callback.onError("Email cannot be empty");
+            return;
+        }
+
+        if (!emailStr.matches(emailPattern)) {
+            email.setError("Please enter a valid email address");
+            callback.onError("Please enter a valid email address");
+            return;
+        }
+
+        userRepository.sendOtp(emailStr, new RepositoryCallback<String>() {
+            @Override
+            public void onSuccess(String data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+
 }

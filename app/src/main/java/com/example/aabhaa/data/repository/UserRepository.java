@@ -10,6 +10,11 @@ import com.example.aabhaa.services.AuthService;
 import com.example.aabhaa.services.RetrofitClient;
 import com.example.aabhaa.services.UserService;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,6 +54,39 @@ public class UserRepository {
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    public void sendOtp(String email, RepositoryCallback<String> callback) {
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("email", email);
+
+        authService.sendOtp(requestBody).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess("OTP sent successfully");
+                } else {
+                    try {
+                        // Read error body from Laravel
+                        String errorBody = response.errorBody() != null ? response.errorBody().string() : null;
+                        if (errorBody != null) {
+                            JSONObject json = new JSONObject(errorBody);
+                            String message = json.optString("message", "Failed to send OTP");
+                            callback.onError(message);
+                        } else {
+                            callback.onError("Unknown error occurred");
+                        }
+                    } catch (Exception e) {
+                        callback.onError("Error parsing server response");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 callback.onError(t.getMessage());
             }
         });
