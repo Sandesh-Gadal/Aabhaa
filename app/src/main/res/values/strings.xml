@@ -2,6 +2,7 @@
     <string name="app_name">Aabhaa</string>
 
 
+
     <string-array name="crop_list">
         <item>Rice</item>
         <item>Wheat</item>

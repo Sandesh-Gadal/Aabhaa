@@ -262,5 +262,43 @@ public class EditProfileController {
         });
     }
 
+    public void verifyOtp(String email, String otp, ControllerCallback callback) {
+
+        if (otp == null || otp.length() != 4) {
+            callback.onError("OTP must be 4 digits");
+            return;
+        }
+
+        userRepository.verifyOtp(email, otp, new RepositoryCallback<String>() {
+            @Override
+            public void onSuccess(String data) {
+                Log.d("view","this is in the controller success"+email+otp);
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.d("view","this is in the controller error"+email+otp);
+                callback.onError(errorMessage);
+            }
+        });
+    }
+    public void resetPasswordByEmail(String email, String newPassword, String confirmPassword, ControllerCallback callback) {
+        // No EditTexts, just string parameters
+        userRepository.resetPasswordByEmail(email, newPassword, confirmPassword, new RepositoryCallback<ApiResponse>() {
+            @Override
+            public void onSuccess(ApiResponse data) {
+                callback.onSuccess(data.getMessage());
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+
+
 
 }

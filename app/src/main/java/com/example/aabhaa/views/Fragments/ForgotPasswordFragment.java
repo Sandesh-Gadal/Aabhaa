@@ -1,5 +1,6 @@
 package com.example.aabhaa.views.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.aabhaa.controllers.ControllerCallback;
 import com.example.aabhaa.controllers.EditProfileController;
 import com.example.aabhaa.databinding.FragmentChangePasswordBinding;
 import com.example.aabhaa.databinding.FragmentForgotPasswordBinding;
+import com.example.aabhaa.views.ForgotpasswordActivity;
 
 public class ForgotPasswordFragment extends Fragment {
 
@@ -46,7 +48,12 @@ public class ForgotPasswordFragment extends Fragment {
                     if (getActivity() == null) return;
                     getActivity().runOnUiThread(() -> {
                         Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
-                      binding.etPhoneOrEmail.setText(null);
+                        String email = binding.etPhoneOrEmail.getText().toString().trim();
+                        Intent intent = new Intent(requireContext(), ForgotpasswordActivity.class);
+                        intent.putExtra("start_position", 1);
+                        intent.putExtra("email", email);
+                        startActivity(intent);
+                        binding.etPhoneOrEmail.setText(null);
                     });
                 }
 

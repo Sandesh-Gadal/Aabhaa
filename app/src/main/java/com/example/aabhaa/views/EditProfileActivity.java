@@ -141,6 +141,8 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void uploadImageToCloudinary(Uri imageUri) {
+        long currentEpochSeconds = System.currentTimeMillis() / 1000L;
+        Log.d("TIME_CHECK", "Current Epoch Seconds: " + currentEpochSeconds);
         MediaManager.get().upload(imageUri)
                 .callback(new UploadCallback() {
                     @Override public void onStart(String requestId) {}

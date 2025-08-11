@@ -20,7 +20,7 @@
         android:layout_height="233dp"
         android:contentDescription="OTP Illustration"
         android:src="@drawable/otpimage"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,15 +40,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/otpFields" />
 
+    <EditText
+        android:id="@+id/emailSend"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/btnSubmitOtp"
-        android:layout_width="333dp"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="24dp"
+        style="@style/AabhaaButtonStyle"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#2E7D32"
-        android:elevation="6dp"
         android:text="Submit"
         android:textColor="@android:color/white"
         android:textSize="26sp"

@@ -1,6 +1,7 @@
 package com.example.aabhaa.data.repository;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.aabhaa.auth.ChangePasswordRequest;
 import com.example.aabhaa.controllers.RepositoryCallback;
@@ -18,6 +19,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.util.Log;
 
 public class UserRepository {
 
@@ -91,5 +93,62 @@ public class UserRepository {
             }
         });
     }
+
+    public void verifyOtp(String email, String otp, RepositoryCallback<String> callback) {
+        Map<String, String> fields = new HashMap<>();
+        fields.put("email", email);
+        fields.put("otp", otp);
+        Log.d("view","this is the "+email+otp);
+        authService.verifyOtp(fields).enqueue(new Callback<ApiResponse>() {
+
+
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ApiResponse apiResponse = response.body();
+                    if ("success".equalsIgnoreCase(apiResponse.getStatus())) {
+                        Log.d("view","this is in the repo sucess "+email+otp);
+                        callback.onSuccess(apiResponse.getMessage());
+                    } else {
+                        callback.onError(apiResponse.getMessage());
+                    }
+                } else {
+                    Log.d("view","this is in the repo error "+email+otp);
+                    callback.onError("Failed to verify OTP. Code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    public void resetPasswordByEmail(String email, String newPassword, String newPasswordConfirmation, RepositoryCallback<ApiResponse> callback) {
+        // No model class for request - use Map for simplicity
+        Map<String, String> body = new HashMap<>();
+        body.put("email", email);
+        body.put("new_password", newPassword);
+        body.put("new_password_confirmation", newPasswordConfirmation);
+
+        Call<ApiResponse> call = authService.resetPasswordByEmail(body);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onError("Failed to reset password. Code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
 
 }

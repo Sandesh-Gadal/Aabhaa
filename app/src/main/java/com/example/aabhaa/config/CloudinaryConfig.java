@@ -21,7 +21,7 @@ public class CloudinaryConfig {
 
         config.put("cloud_name", BuildConfig.CLOUDINARY_CLOUD_NAME);
         config.put("api_key", BuildConfig.CLOUDINARY_API_KEY);
-        config.put("api_secret",BuildConfig.CLOUDINARY_API_KEY );
+        config.put("api_secret",BuildConfig.CLOUDINARY_API_SECRET );
 //        Log.d("CloudinaryConfig", "cloud:inside the config package " + BuildConfig.CLOUDINARY_CLOUD_NAME + ", key: " + BuildConfig.CLOUDINARY_API_KEY+ ",secret: "+ BuildConfig.CLOUDINARY_API_KEY);
         MediaManager.init(context, config);
     }

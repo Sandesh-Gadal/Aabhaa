@@ -4,42 +4,40 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 import com.example.aabhaa.R;
 import com.example.aabhaa.adapters.ForgotPasswordPagerAdapter;
+import com.example.aabhaa.views.Fragments.OtpVerificationFragment;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 public class ForgotpasswordActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private DotsIndicator dotsIndicator;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ftp);
 
+        String email = getIntent().getStringExtra("email");
+        int startPosition = getIntent().getIntExtra("start_position", 0);
+
         viewPager = findViewById(R.id.viewPager);
         dotsIndicator = findViewById(R.id.dots_indicator);
 
-        // Set up ViewPager with FragmentStateAdapter
-        ForgotPasswordPagerAdapter adapter = new ForgotPasswordPagerAdapter(this);
+        ForgotPasswordPagerAdapter adapter = new ForgotPasswordPagerAdapter(this, email);
         viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(0, false);
         viewPager.setUserInputEnabled(false);
+        dotsIndicator.setVisibility(View.GONE);
+        dotsIndicator.setViewPager2(viewPager);
 
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("start_position")) {
-            int startPosition = intent.getIntExtra("start_position", 0);
-            Log.d("view", "" + startPosition);
-
-            // Hide dots indicator and don't set it up
-            dotsIndicator.setVisibility(View.GONE);
+        if (startPosition > 0) {
             viewPager.setCurrentItem(startPosition, false);
-        } else {
-            // Only set up dots indicator when we actually want to show it
-            setupDotsIndicator();
         }
     }
+
 
     private void setupDotsIndicator() {
         dotsIndicator.setViewPager2(viewPager);
