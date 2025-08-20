@@ -8,9 +8,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aabhaa.controllers.CropController;
 import com.example.aabhaa.controllers.MainController;
 import com.example.aabhaa.controllers.WeatherController;
+import com.example.aabhaa.data.repository.CropRepository;
 import com.example.aabhaa.utils.CustomToast;
 import com.example.aabhaa.views.Fragments.CalendarFragment;
 import com.example.aabhaa.views.Fragments.ExploreFragment;
@@ -27,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fabChatBot;
     private MainController mainController;
     private WeatherController weatherController;
+    private CropController cropController;
+    private CropRepository cropRepository;
+
+    private RecyclerView recyclerView;
+
     private int currentSelectedItemId = -1; // Initially no selection
 
     @Override
@@ -52,7 +60,12 @@ public class MainActivity extends AppCompatActivity {
 
         mainController.checkAndRequestLocationPermission(this);
 
+        // Initialize repository & controller
+        cropRepository = new CropRepository(getApplicationContext());
+        cropController = new CropController(getApplicationContext(), recyclerView, cropRepository);
 
+
+        cropController.fetchCropsBySeason();
 
         binding.bottomNavigationView.setSelectedItemId(R.id.nav_home);
         switchFragmentById(R.id.nav_home);

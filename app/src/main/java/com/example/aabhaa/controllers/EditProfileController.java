@@ -55,6 +55,8 @@ public class EditProfileController {
 
             String gender = getSelectedRadioText(genderGroup);
             String language = getSelectedRadioText(langGroup);
+
+            Log.d("EditProfile",""+fullName+"  "+dateOfBirth);
             // Validate each field
             if (fullName.isEmpty()) {
                 etFullName.setError("Full name is required");

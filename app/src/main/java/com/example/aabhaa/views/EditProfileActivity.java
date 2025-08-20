@@ -35,6 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -161,38 +162,99 @@ public class EditProfileActivity extends AppCompatActivity {
                 }).dispatch();
     }
     private void updateUIWithUserData(User user) {
-        etFullName.setText(user.getFullName());
-        etPhone.setText(user.getPhone());
-        etDate.setText(user.getDateOfBirth());
-        etExperience.setText(String.valueOf(user.getExperienceYears()));
+        if (user == null) {
+            // User object is null, set all to default
+            etFullName.setText("");
+            etPhone.setText("");
+            etDate.setText("");
+            etExperience.setText("0");
 
-        // Gender
-        switch (user.getGender()) {
-            case "Male": rbMale.setChecked(true); break;
-            case "Female": rbFemale.setChecked(true); break;
-            case "Other": rbOther.setChecked(true); break;
+            rbMale.setChecked(false);
+            rbFemale.setChecked(false);
+            rbOther.setChecked(false);
+
+            acvFarmerType.setText("", false);
+            acvEducation.setText("", false);
+
+            ((RadioButton) langGroup.getChildAt(0)).setChecked(true); // Default to English
+
+            uploadedImageUrl = null;
+            ivProfile.setImageResource(R.drawable.bg_wheat);
+            return;
         }
 
-        // Farmer type (AutoCompleteTextView)
-        acvFarmerType.setText(user.getFarmerType(), false);
+        // Full Name
+        etFullName.setText(user.getFullName() != null && !user.getFullName().isEmpty() ? user.getFullName() : "");
 
-        // Education
-        acvEducation.setText(user.getEducationLevel(), false);
+        // Phone
+        etPhone.setText(user.getPhone() != null && !user.getPhone().isEmpty() ? user.getPhone() : "");
 
-        // Language
+        // Date of Birth
+//        etDate.setText(user.getDateOfBirth() != null && !user.getDateOfBirth().isEmpty() ? user.getDateOfBirth() : "");
+
+        String rawDate = user.getDateOfBirth();
+
+        if (rawDate != null && !rawDate.isEmpty()) {
+            try {
+                // Parse the ISO date string
+                SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
+                isoFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                Date date = isoFormat.parse(rawDate);
+
+                // Format to desired output
+                SimpleDateFormat desiredFormat = new SimpleDateFormat("d/M/yyyy", Locale.getDefault());
+                String formattedDate = desiredFormat.format(date);
+
+                etDate.setText(formattedDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                etDate.setText(rawDate);  // fallback
+            }
+        } else {
+            etDate.setText("");
+        }
+
+        // Experience (integer or number)
+        etExperience.setText(user.getExperienceYears() > 0 ? String.valueOf(user.getExperienceYears()) : "0");
+
+        // Gender - reset all first
+        rbMale.setChecked(false);
+        rbFemale.setChecked(false);
+        rbOther.setChecked(false);
+        if (user.getGender() != null) {
+            switch (user.getGender()) {
+                case "Male": rbMale.setChecked(true); break;
+                case "Female": rbFemale.setChecked(true); break;
+                case "Other": rbOther.setChecked(true); break;
+            }
+        }
+
+        // Farmer type
+        acvFarmerType.setText(user.getFarmerType() != null && !user.getFarmerType().isEmpty() ? user.getFarmerType() : "", false);
+
+        // Education level
+        acvEducation.setText(user.getEducationLevel() != null && !user.getEducationLevel().isEmpty() ? user.getEducationLevel() : "", false);
+
+        // Preferred language - default to English if null or unknown
         if ("English".equals(user.getPreferredLanguage())) {
             ((RadioButton) langGroup.getChildAt(0)).setChecked(true);
-        } else {
+        } else if ("OtherLanguageCodeOrName".equals(user.getPreferredLanguage())) {
+            // Replace OtherLanguageCodeOrName with your actual second language code/name
             ((RadioButton) langGroup.getChildAt(1)).setChecked(true);
+        } else {
+            // Default fallback
+            ((RadioButton) langGroup.getChildAt(0)).setChecked(true);
         }
 
-        uploadedImageUrl=user.getProfileImageUrl();
-        // Load profile image
+        // Profile image URL
+        uploadedImageUrl = (user.getProfileImageUrl() != null && !user.getProfileImageUrl().isEmpty()) ? user.getProfileImageUrl() : null;
+
         Glide.with(this)
-                .load(user.getProfileImageUrl())
+                .load(uploadedImageUrl != null ? uploadedImageUrl : "")
                 .placeholder(R.drawable.bg_wheat)
                 .into(ivProfile);
     }
+
 
 
 

@@ -27,6 +27,8 @@ public class Content implements Serializable {
 
     // Optional: You can add convenience methods here later
 
+
+
     // Constructor
     public Content(int id, String title_en, String title_ne,String description_en, String image_url, String content_type,
                    String category, String crop_type, String difficulty, String season,
