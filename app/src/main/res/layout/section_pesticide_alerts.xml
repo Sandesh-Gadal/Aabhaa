@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pesticide Alerts"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/aabhaGreen"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="Read More →"
         android:textColor="@color/aabhaGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toTopOf="@id/tvPesticideTitle"
         app:layout_constraintEnd_toEndOf="parent" />
 

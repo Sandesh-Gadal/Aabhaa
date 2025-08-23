@@ -20,14 +20,23 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_USER = 1;
     private static final int VIEW_TYPE_EXPERT = 2;
 
-    public ChatAdapter(List<ChatMessage> chatMessages) {
+    private final int currentUserId; // pass admin/user ID when creating adapter
+
+
+    public ChatAdapter(List<ChatMessage> chatMessages, int currentUserId) {
         this.chatMessages = chatMessages;
+        this.currentUserId = currentUserId;
     }
+
 
     @Override
     public int getItemViewType(int position) {
         ChatMessage message = chatMessages.get(position);
-        return message.senderType == ChatMessage.SenderType.USER ? VIEW_TYPE_USER : VIEW_TYPE_EXPERT;
+        if (message.sender_id == currentUserId) {
+            return VIEW_TYPE_USER; // message sent by admin/expert
+        } else {
+            return VIEW_TYPE_EXPERT;   // message sent by user
+        }
     }
 
     @Override

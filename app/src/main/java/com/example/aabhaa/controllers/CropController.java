@@ -37,6 +37,12 @@ public class CropController {
             }
 
             @Override
+            public void onCached(List<Crop> cachedCrops) {
+                // Show cached crops immediately
+                cropAdapter.updateList(cachedCrops);
+            }
+
+            @Override
             public void onError(String errorMessage) {
                 Log.e("CropController", errorMessage);
             }

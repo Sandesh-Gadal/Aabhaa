@@ -85,6 +85,15 @@ public class SharedPrefManager {
     public double getLongitude() {
         return Double.parseDouble(sharedPreferences.getString("longitude", "0.0"));
     }
+
+    public int getUserId() {
+        String token = getAccessToken();
+        if (token == null) return -1;
+
+        // Assuming JwtUtils can decode JWT payload as a JSONObject
+        return JwtUtils.getUserIdFromToken(token); // implement this in JwtUtils
+    }
+
 }
 
 

@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Farming Tips"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/aabhaGreen"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Read More →"
+        android:textSize="16sp"
         android:textColor="@color/aabhaGreen"
         app:layout_constraintTop_toTopOf="@id/tvTipsTitle"
         app:layout_constraintEnd_toEndOf="parent" />

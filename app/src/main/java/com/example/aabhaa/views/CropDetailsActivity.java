@@ -7,14 +7,21 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aabhaa.R;
+import com.example.aabhaa.controllers.CropController;
+import com.example.aabhaa.data.repository.CropRepository;
 import com.example.aabhaa.databinding.ActivityCropDetailsBinding;
 import com.google.android.material.chip.Chip;
 
 public class CropDetailsActivity extends AppCompatActivity {
 
     private ActivityCropDetailsBinding binding;
+
+    private CropController cropController;
+    private CropRepository cropRepository;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,15 @@ public class CropDetailsActivity extends AppCompatActivity {
 
         View nutrientView = LayoutInflater.from(this).inflate(R.layout.layout_nutrient_info, binding.layoutNutrients, false);
         binding.layoutNutrients.addView(nutrientView);
+
+        RecyclerView recyclerView = binding.rvYouMayAlsoLike; // use 'view', not getActivity()
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        cropRepository = new CropRepository(getApplicationContext());
+        cropController = new CropController(getApplicationContext(), recyclerView, cropRepository);
+        cropController.fetchCropsBySeason();
 
         binding.chipGroupCategories.setOnCheckedChangeListener((group, checkedId) -> {
             binding.layoutOverview.setVisibility(View.GONE);

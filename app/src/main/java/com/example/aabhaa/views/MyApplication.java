@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.example.aabhaa.auth.SharedPrefManager;
 import com.example.aabhaa.config.CloudinaryConfig;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class MyApplication extends Application {
 
@@ -12,5 +14,6 @@ public class MyApplication extends Application {
         super.onCreate();
         SharedPrefManager.init(this);  // initialize only once here
         CloudinaryConfig.init(this);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }

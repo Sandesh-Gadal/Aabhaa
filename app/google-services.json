@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "270311292153",
+    "firebase_url": "https://aabhaa-6108d-default-rtdb.firebaseio.com",
+    "project_id": "aabhaa-6108d",
+    "storage_bucket": "aabhaa-6108d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270311292153:android:56b52677eb2c5aa17a7628",
+        "android_client_info": {
+          "package_name": "com.example.aabhaa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBjpIz7U204eFKdVxPqxMf5scXBF--C_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

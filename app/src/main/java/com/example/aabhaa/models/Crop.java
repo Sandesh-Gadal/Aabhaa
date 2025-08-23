@@ -1,6 +1,15 @@
 package com.example.aabhaa.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.ColumnInfo;
+import lombok.Data;
+
+
+@Data
+@Entity(tableName = "crops")
 public class Crop {
+    @PrimaryKey
     private int id;
     private String name;
     private String image_url;

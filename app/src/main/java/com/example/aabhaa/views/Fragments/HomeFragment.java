@@ -10,14 +10,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
 import com.example.aabhaa.R;
+import com.example.aabhaa.controllers.CropController;
 import com.example.aabhaa.controllers.EditProfileController;
 import com.example.aabhaa.controllers.MainController;
 import com.example.aabhaa.controllers.UserProfileCallback;
 import com.example.aabhaa.controllers.WeatherController;
+import com.example.aabhaa.data.repository.CropRepository;
 import com.example.aabhaa.databinding.FragmentHomeBinding;
 import com.example.aabhaa.models.User;
 import com.example.aabhaa.views.NotificationActivity;
@@ -25,6 +29,9 @@ import com.example.aabhaa.views.NotificationActivity;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+
+    private CropController cropController;
+    private CropRepository cropRepository;
 
     private EditProfileController editProfileController;
 
@@ -52,6 +59,7 @@ public class HomeFragment extends Fragment {
             );
         });
         updateProfileUI();
+
         return binding.getRoot(); // Inflates activity_home.xml
     }
 
@@ -60,6 +68,14 @@ public class HomeFragment extends Fragment {
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        RecyclerView recyclerView = binding.includeCrops.rvCrops; // use 'view', not getActivity()
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        cropRepository = new CropRepository(getContext());
+        cropController = new CropController(getContext(), recyclerView, cropRepository);
+        cropController.fetchCropsBySeason();
         binding.includeHeader.notificationContainer.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), NotificationActivity.class);
             startActivity(intent);

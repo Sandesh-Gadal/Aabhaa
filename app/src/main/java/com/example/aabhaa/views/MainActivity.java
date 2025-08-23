@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aabhaa.controllers.CropController;
@@ -61,11 +62,6 @@ public class MainActivity extends AppCompatActivity {
         mainController.checkAndRequestLocationPermission(this);
 
         // Initialize repository & controller
-        cropRepository = new CropRepository(getApplicationContext());
-        cropController = new CropController(getApplicationContext(), recyclerView, cropRepository);
-
-
-        cropController.fetchCropsBySeason();
 
         binding.bottomNavigationView.setSelectedItemId(R.id.nav_home);
         switchFragmentById(R.id.nav_home);
