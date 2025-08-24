@@ -42,7 +42,7 @@ public class CropDetailsActivity extends AppCompatActivity {
                 new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        cropRepository = new CropRepository(getApplicationContext());
+        cropRepository = new CropRepository(this);
         cropController = new CropController(getApplicationContext(), recyclerView, cropRepository);
         cropController.fetchCropsBySeason();
 

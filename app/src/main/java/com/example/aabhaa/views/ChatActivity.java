@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.aabhaa.adapters.ChatAdapter;
 import com.example.aabhaa.auth.SharedPrefManager;
-import com.example.aabhaa.data.StaticContentProvider;
 import com.example.aabhaa.databinding.ActivityChatBinding;
 
 import com.example.aabhaa.models.ChatMessage;

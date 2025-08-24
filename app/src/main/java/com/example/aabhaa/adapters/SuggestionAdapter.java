@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.aabhaa.R;
 import com.example.aabhaa.models.Content;
+import com.example.aabhaa.views.ContentDetailsActivity;
 
 import java.util.List;
 
@@ -21,11 +22,13 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Su
     private final Context context;
     private final List<Content> suggestions;
     private final View.OnClickListener itemClickListener;
+    private ContentDetailsActivity contentDetailsActivity;
 
     public SuggestionAdapter(Context context, List<Content> suggestions, View.OnClickListener itemClickListener) {
         this.context = context;
         this.suggestions = suggestions;
         this.itemClickListener = itemClickListener;
+        this.contentDetailsActivity = new ContentDetailsActivity();
     }
 
     @NonNull
@@ -39,7 +42,7 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Su
     public void onBindViewHolder(@NonNull SuggestionViewHolder holder, int position) {
         Content content = suggestions.get(position);
         holder.tvSuggestionTitle.setText(content.title_en);
-        holder.tvDate.setText(content.published_at);
+        holder.tvDate.setText(contentDetailsActivity.formatDateTime(content.published_at));
 
         try {
             int resId = Integer.parseInt(content.image_url);

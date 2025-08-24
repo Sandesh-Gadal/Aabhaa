@@ -5,16 +5,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
+import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.aabhaa.adapters.ContentAdapter;
 import com.example.aabhaa.controllers.CropController;
+import com.example.aabhaa.controllers.ExploreController;
 import com.example.aabhaa.controllers.MainController;
 import com.example.aabhaa.controllers.WeatherController;
+import com.example.aabhaa.data.repository.ContentRepository;
 import com.example.aabhaa.data.repository.CropRepository;
+import com.example.aabhaa.models.Content;
 import com.example.aabhaa.utils.CustomToast;
 import com.example.aabhaa.views.Fragments.CalendarFragment;
 import com.example.aabhaa.views.Fragments.ExploreFragment;
@@ -25,16 +30,31 @@ import com.example.aabhaa.R;
 import com.example.aabhaa.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    public ActivityMainBinding binding;
     private FloatingActionButton fabChatBot;
     private MainController mainController;
     private WeatherController weatherController;
     private CropController cropController;
     private CropRepository cropRepository;
 
+
     private RecyclerView recyclerView;
+
+    private RecyclerView recyclerViewContent;
+    private ContentAdapter contentAdapter;
+    private ProgressBar progressBar;
+//    private SwipeRefreshLayout swipeRefreshLayout;
+
+    private ContentRepository contentRepository;
+    private ExploreController exploreController;
+    private List<Content> contentList;
+
 
     private int currentSelectedItemId = -1; // Initially no selection
 
@@ -86,10 +106,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
     }
-
 
 
 

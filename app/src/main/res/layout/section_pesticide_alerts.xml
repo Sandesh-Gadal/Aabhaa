@@ -1,7 +1,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/tvPesticideTitle"
@@ -24,6 +25,16 @@
         app:layout_constraintTop_toTopOf="@id/tvPesticideTitle"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Card Items (Can be turned into RecyclerView later) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvExplorePosts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvPesticideMore"
+        tools:listitem="@layout/item_pf_post"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

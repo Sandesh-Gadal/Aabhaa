@@ -1,3 +1,4 @@
+// Updated ContentAdapter.java to match your existing layout
 package com.example.aabhaa.adapters;
 
 import android.content.Context;
@@ -11,11 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.aabhaa.R;
 import com.example.aabhaa.controllers.ExploreController;
 import com.example.aabhaa.models.Content;
 import com.example.aabhaa.views.ContentDetailsActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentViewHolder> {
@@ -46,18 +49,34 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentV
         String formattedTime = exploreController.formatTimeAgo(content.published_at);
         holder.tvPostTime.setText(formattedTime);
 
-        try {
-            // Assuming local drawable image (if stored as string like "2131165321")
-            int resId = Integer.parseInt(content.image_url);
-            holder.imagePost.setImageResource(resId);
-        } catch (NumberFormatException e) {
-            // Use Glide or a placeholder for remote URLs or invalid entries
-            holder.imagePost.setImageResource(R.drawable.bg_wheat); // fallback image
+        // Load image using Glide or fallback to drawable resource
+        if (content.image_url != null && !content.image_url.isEmpty()) {
+            try {
+                // Check if it's a drawable resource ID (stored as string)
+                int resId = Integer.parseInt(content.image_url);
+                holder.imagePost.setImageResource(resId);
+            } catch (NumberFormatException e) {
+                // It's a URL, use Glide to load it
+                Glide.with(context)
+                        .load(content.image_url)
+                        .placeholder(R.drawable.bg_wheat)
+                        .error(R.drawable.bg_wheat)
+                        .into(holder.imagePost);
+            }
+        } else {
+            holder.imagePost.setImageResource(R.drawable.bg_wheat);
         }
 
-        // Show a play icon overlay if it's a video content
-        if ("video".equalsIgnoreCase(content.content_type)) {
+        // Show play icon overlay based on content type
+        String contentType = content.getContentType();
+        if ("video".equalsIgnoreCase(contentType)) {
             holder.ivPlayIcon.setVisibility(View.VISIBLE);
+            // Using your existing ic_camera drawable as play icon
+            holder.ivPlayIcon.setImageResource(R.drawable.ic_camera);
+        } else if ("audio".equalsIgnoreCase(contentType)) {
+            holder.ivPlayIcon.setVisibility(View.VISIBLE);
+            // You can change this to an audio icon if you have one
+            holder.ivPlayIcon.setImageResource(R.drawable.ic_camera);
         } else {
             holder.ivPlayIcon.setVisibility(View.GONE);
         }
@@ -66,6 +85,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentV
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ContentDetailsActivity.class);
             intent.putExtra("content_item", content); // Pass the full object
+            intent.putParcelableArrayListExtra("content_list", new ArrayList<>(contentList));
             context.startActivity(intent);
         });
     }
@@ -86,8 +106,28 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentV
             tvPostDescription = itemView.findViewById(R.id.tvPostDescription);
             tvPostTime = itemView.findViewById(R.id.tvPostTime);
 
-            // Overlay play icon (you need to add this in item_explore_post.xml)
+            // Overlay play icon
             ivPlayIcon = itemView.findViewById(R.id.ivPlayIcon);
         }
+    }
+
+    // Method to update the list and notify adapter
+    public void updateContentList(List<Content> newContentList) {
+        this.contentList.clear();
+        this.contentList.addAll(newContentList);
+        notifyDataSetChanged();
+    }
+
+    // Method to add more content (for pagination)
+    public void addContent(List<Content> moreContent) {
+        int startPosition = this.contentList.size();
+        this.contentList.addAll(moreContent);
+        notifyItemRangeInserted(startPosition, moreContent.size());
+    }
+
+    // Filter content by category
+    public void filterByCategory(String category) {
+        // This method can be called from the fragment when chips are clicked
+        // You'll need to implement this based on your filtering requirements
     }
 }

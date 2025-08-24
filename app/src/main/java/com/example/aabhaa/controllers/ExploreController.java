@@ -14,51 +14,60 @@ import java.util.concurrent.TimeUnit;
 public class ExploreController {
 
     // Return static list of contents (dummy data)
-    public List<Content> getExploreContents() {
+    // Return static list of contents (dummy data for testing)
+    public List<Content> getDummyContents() {
         List<Content> contentList = new ArrayList<>();
 
+        // Add some dummy content for testing
         contentList.add(new Content(
                 1,
-                "Smart Farming Techniques",
-                "स्मार्ट खेती प्रविधिहरू",
-                "Discover how smart farming improves smallholder yields.",
+                "Mental Health Awareness",
+                "मानसिक स्वास्थ्य चेतना",
+                "Understanding the importance of mental health in daily life",
+                "दैनिक जीवनमा मानसिक स्वास्थ्यको महत्व बुझ्ने",
                 String.valueOf(R.drawable.bg_wheat),
-                "article",
-                "Technology",
-                "Wheat",
-                "Beginner",
-                "Monsoon",
-                "Terai",
-                "en",
+                "mental-health",
                 true,
-                null,
-                null,
+                "",
+                "",
                 1,
-                "2025-07-01T10:00:00",
-                "2025-06-30T08:30:00",
-                "2025-07-01T10:00:00"
+                "2024-01-15T10:30:00",
+                "2024-01-15T10:30:00",
+                "2024-01-15T10:30:00"
         ));
 
         contentList.add(new Content(
                 2,
-                "Organic Pest Control",
-                "जैविक कीट नियन्त्रण",
-                "Learn natural ways to handle pest issues.",
+                "Meditation Techniques",
+                "ध्यान प्रविधिहरू",
+                "Learn various meditation techniques for stress relief",
+                "तनाव कम गर्न विभिन्न ध्यान प्रविधिहरू सिक्नुहोस्",
                 String.valueOf(R.drawable.bg_wheat),
-                "tip",
-                "Pesticides",
-                "Rice",
-                "Intermediate",
-                "Summer",
-                "Hills",
-                "en",
-                false,
-                null,
-                null,
-                2,
-                "2025-06-28T07:45:00",
-                "2025-06-28T07:00:00",
-                "2025-06-28T07:45:00"
+                "meditation",
+                true,
+                "https://example.com/meditation-video.mp4",
+                "",
+                1,
+                "2024-01-14T15:20:00",
+                "2024-01-14T15:20:00",
+                "2024-01-14T15:20:00"
+        ));
+
+        contentList.add(new Content(
+                3,
+                "Breathing Exercises",
+                "सास फेर्ने अभ्यासहरू",
+                "Simple breathing exercises for anxiety management",
+                "चिन्ता व्यवस्थापनका लागि सरल सास फेर्ने अभ्यासहरू",
+                String.valueOf(R.drawable.bg_wheat),
+                "breathing",
+                true,
+                "",
+                "https://example.com/breathing-audio.mp3",
+                1,
+                "2024-01-13T09:45:00",
+                "2024-01-13T09:45:00",
+                "2024-01-13T09:45:00"
         ));
 
         return contentList;
