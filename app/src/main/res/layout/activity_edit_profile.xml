@@ -29,7 +29,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="28dp" />
 
-    <!-- Header Card with Back and Language Toggle -->
+    <!-- Header Card with Back Button -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/headerCard"
         android:layout_width="0dp"
@@ -48,10 +48,6 @@
                 android:id="@+id/backButton"
                 layout="@layout/back_button" />
 
-<!--            <include-->
-<!--                android:id="@+id/langToggle"-->
-<!--                layout="@layout/lang_toggle"-->
-<!--                tools:theme="@style/Theme.Aabhaa.Register" />-->
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -71,8 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-           >
+            android:gravity="center_horizontal">
 
             <!-- Profile Picture Section -->
             <FrameLayout
@@ -94,7 +89,7 @@
                     android:layout_gravity="bottom|end"
                     android:layout_margin="4dp"
                     android:background="@drawable/circle_green"
-                    android:contentDescription="Edit Icon"
+                    android:contentDescription="upload photo"
                     android:padding="4dp"
                     android:src="@drawable/ic_camera" />
             </FrameLayout>
@@ -103,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Tap to update photo"
+                android:text="@string/tap_update_photo"
                 android:textColor="#888888"
                 android:textSize="12sp" />
 
@@ -112,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Full Name"
+                android:text="@string/full_name"
                 android:textSize="18sp"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
@@ -122,7 +117,7 @@
                 style="@style/CustomTextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Your Name"
+                android:hint="@string/hint_your_name"
                 app:startIconDrawable="@drawable/profile">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -141,7 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Phone Number"
+                android:text="@string/phone_number"
                 android:textSize="18sp"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
@@ -151,7 +146,7 @@
                 style="@style/CustomTextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Eg: 98XXXXXXXX"
+                android:hint="@string/hint_phone_number"
                 app:startIconDrawable="@drawable/ic_address"
                 app:startIconTint="#1B5E20">
 
@@ -165,14 +160,12 @@
                     android:textColor="#1B5E20" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
             <!-- Gender -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Gender"
+                android:text="@string/gender"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
 
@@ -182,28 +175,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                >
+                android:layout_marginBottom="16dp">
 
                 <RadioButton
                     android:id="@+id/rbMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male"  />
+                    android:text="@string/male"
+                    android:tag="Male" />
 
                 <RadioButton
                     android:id="@+id/rbFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Female"
-                    android:layout_marginStart="20dp"/>
+                    android:text="@string/female"
+                    android:layout_marginStart="20dp"
+                    android:tag="Female" />
 
                 <RadioButton
                     android:id="@+id/rbOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Other"
-                    android:layout_marginStart="20dp"/>
+                    android:text="@string/other"
+                    android:layout_marginStart="20dp"
+                    android:tag="Other" />
             </RadioGroup>
 
             <!-- Date of Birth -->
@@ -211,7 +206,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Date of Birth"
+                android:text="@string/dob"
                 android:textSize="18sp"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
@@ -221,7 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/CustomTextInputStyle"
-                android:hint="Select date"
+                android:hint="@string/hint_select_date"
                 app:startIconDrawable="@drawable/ic_email"
                 app:startIconTint="#1B5E20">
 
@@ -241,19 +236,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:textSize="18sp"
-                android:text="Type of Farmer"
+                android:text="@string/type_of_farmer"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
 
-            <!-- Spinner can go here -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/farmerTypeLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Type of Farmer"
-                android:layout_marginTop="8dp"
-              >
+                android:hint="@string/type_of_farmer"
+                android:layout_marginTop="8dp">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteFarmerType"
@@ -264,26 +257,22 @@
                     android:paddingStart="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-
-
-            <!-- Years of Experience -->
+            <!-- Experience -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Experience in Agriculture"
+                android:text="@string/experience_agriculture"
                 android:textSize="18sp"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ExperienceLayout"
                 style="@style/CustomTextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="enter your experience year"
+                android:hint="@string/hint_experience_year"
                 app:startIconDrawable="@drawable/profile">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -296,12 +285,12 @@
                     android:imeOptions="actionNext" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Education Level -->
+            <!-- Education -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Education Level"
+                android:text="@string/education_level"
                 android:textSize="18sp"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
@@ -311,9 +300,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Select your education level"
-                android:layout_marginTop="8dp"
-                >
+                android:hint=""
+                android:layout_marginTop="8dp">
 
                 <AutoCompleteTextView
                     android:id="@+id/acvEducation"
@@ -324,14 +312,12 @@
                     android:paddingStart="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
             <!-- Preferred Language -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Preferred Language"
+                android:text="@string/preferred_language"
                 android:textSize="18sp"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
@@ -342,24 +328,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                >
+                android:layout_marginBottom="16dp">
 
                 <RadioButton
+                    android:id="@+id/rbEnglish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="English"  />
+                    android:text="@string/english"
+                    android:tag="English" />
 
                 <RadioButton
+                    android:id="@+id/rbNepali"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nepali"
-                    android:layout_marginStart="20dp"/>
-
-
+                    android:text="@string/nepali"
+                    android:layout_marginStart="20dp"
+                    android:tag="English" />
             </RadioGroup>
-
-
 
             <!-- Save Button -->
             <Button
@@ -369,11 +354,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/green"
-                android:text="Save Changes"
+                android:text="@string/save_changes"
                 android:textSize="16sp"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

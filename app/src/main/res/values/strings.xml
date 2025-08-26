@@ -44,4 +44,66 @@
     <string name="faq">FAQs</string>
 
 
+    <!-- Profile / Greeting -->
+    <string name="hello_text">Hello! Welcome</string>
+    <string name="user_name">Abina Bishwokarma</string>
+
+    <!-- Crops Section -->
+    <string name="crops_title">Suitable Seasonal Crops</string>
+
+    <!-- Pesticide Section -->
+    <string name="pesticide_title">Pesticide Alerts</string>
+    <string name="pesticide_read_more">Read More →</string>
+
+    <!-- Farming Tips Section -->
+    <string name="tips_title">Farming Tips</string>
+    <string name="tips_read_more">Read More →</string>
+
+    <!-- Articles / Videos Section -->
+    <string name="slider_title">Popular Articles / Videos</string>
+    <string name="slider_more">See more →</string>
+
+    <!-- Notifications -->
+    <string name="notification_count">44</string>
+
+
+<!--    calendar fragemnt-->
+    <string name="tasks_for_date">Tasks for %1$s (%2$d)</string>
+    <string name="calendar_title">My Calendar</string>
+    <string name="calendar_details">Track your farming tasks easily</string>
+
+<!--crop details-->
+    <string name="header_crop_details">Crop details</string>
+    <string name="label_description">Description</string>
+    <string name="label_duration">Duration</string>
+    <string name="label_ph_level">pH Level</string>
+    <string name="label_temperature">Temperature</string>
+    <string name="label_you_might_also_like">You might also like</string>
+    <string name="kg_per_ha">kg/ha</string>
+    <string name="nitrogen">Nitrogen</string>
+    <string name="phosphorus">Phosphorus</string>
+    <string name="potassium">Potassium</string>
+
+
+<!--    edit profile -->
+    <string name="tap_update_photo">Tap to update photo</string>
+    <string name="full_name">Full Name</string>
+    <string name="hint_your_name">Your Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="hint_phone_number">Eg: 98XXXXXXXX</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="dob">Date of Birth</string>
+    <string name="hint_select_date">Select date</string>
+    <string name="type_of_farmer">Type of Farmer</string>
+    <string name="experience_agriculture">Experience in Agriculture</string>
+    <string name="hint_experience_year">Enter your experience year</string>
+    <string name="education_level">Education Level</string>
+    <string name="hint_education_level">Select your education level</string>
+    <string name="preferred_language">Preferred Language</string>
+    <string name="english">English</string>
+    <string name="nepali">Nepali</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

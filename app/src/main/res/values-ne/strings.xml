@@ -32,5 +32,69 @@
     <string name="faq">प्रश्नोत्तर</string>
     <string name="logout">लगआउट</string>
 
+
+    <!-- Profile / Greeting -->
+    <string name="hello_text">नमस्ते! स्वागत छ</string>
+    <string name="user_name">अविना विश्वकर्मा</string>
+
+    <!-- Crops Section -->
+    <string name="crops_title">उपयुक्त मौसमी बाली</string>
+
+    <!-- Pesticide Section -->
+    <string name="pesticide_title">किटनाशक सचेतना</string>
+    <string name="pesticide_read_more">थप पढ्नुहोस् →</string>
+
+    <!-- Farming Tips Section -->
+    <string name="tips_title">खेतीसम्बन्धी टिप्स</string>
+    <string name="tips_read_more">थप पढ्नुहोस् →</string>
+
+    <!-- Articles / Videos Section -->
+    <string name="slider_title">लोकप्रिय लेख / भिडियो</string>
+    <string name="slider_more">अझै हेर्नुहोस् →</string>
+
+    <!-- Notifications -->
+    <string name="notification_count">४४</string>
+
+
+    <!--calednar fragment-->
+    <string name="tasks_for_date">%1$s का लागि कार्यहरू (%2$d)</string>
+    <string name="calendar_title">मेरो पात्रो</string>
+    <string name="calendar_details">आफ्नो खेती कार्य सजिलै ट्र्याक गर्नुहोस्</string>
+
+
+<!--    crop details-->
+    <string name="header_crop_details">फसल विवरण</string>
+    <string name="kg_per_ha">केजी/हेक्टर</string>
+    <string name="nitrogen">नाइट्रोजन</string>
+    <string name="phosphorus">फस्फोरस</string>
+    <string name="potassium">पोटासियम</string>
+    <string name="label_description">विवरण</string>
+    <string name="label_duration">अवधि</string>
+    <string name="label_ph_level">pH स्तर</string>
+    <string name="label_temperature">तापक्रम</string>
+    <string name="label_you_might_also_like">तपाईंलाई मन पर्न सक्छ</string>
+
+<!--    edit profile-->
+    <string name="tap_update_photo">फोटो अपडेट </string>
+    <string name="full_name">पूरा नाम</string>
+    <string name="hint_your_name">तपाईंको नाम</string>
+    <string name="phone_number">फोन नम्बर</string>
+    <string name="hint_phone_number">उदा: 98XXXXXXXX</string>
+    <string name="gender">लिङ्ग</string>
+    <string name="male">पुरुष</string>
+    <string name="female">महिला</string>
+    <string name="other">अन्य</string>
+    <string name="dob">जन्म मिति</string>
+    <string name="hint_select_date">मिति चयन गर्नुहोस्</string>
+    <string name="type_of_farmer">किसानको प्रकार</string>
+    <string name="experience_agriculture">कृषिमा अनुभव</string>
+    <string name="hint_experience_year">आफ्नो अनुभव वर्ष </string>
+    <string name="education_level">शिक्षा स्तर</string>
+    <string name="hint_education_level">आफ्नो शिक्षा स्तर </string>
+    <string name="preferred_language">मनपर्ने भाषा</string>
+    <string name="english">अंग्रेजी</string>
+    <string name="nepali">नेपाली</string>
+    <string name="save_changes">परिवर्तन सुरक्षित गर्नुहोस्</string>
+
 </resources>
 

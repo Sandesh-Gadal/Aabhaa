@@ -29,26 +29,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/cover_img" />
+                    android:src="@mipmap/ic_launcher_foreground" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/editcoverimg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="8dp"
-                    android:text="@string/edit_cover"
-                    android:textSize="12sp"
-                    android:textColor="@color/green"
-                    android:backgroundTint="@android:color/white"
-                    app:cornerRadius="16dp"
-                    app:icon="@drawable/ic_camera"
-                    app:iconSize="15dp"
-                    app:iconGravity="textStart"
-                    app:iconPadding="4dp"
-                    app:iconTint="@color/green"
-                    android:minWidth="0dp"
-                    android:paddingHorizontal="8dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/editcoverimg"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="32dp"-->
+<!--                    android:layout_gravity="bottom|end"-->
+<!--                    android:layout_margin="8dp"-->
+<!--                    android:text="@string/edit_cover"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textColor="@color/green"-->
+<!--                    android:backgroundTint="@android:color/white"-->
+<!--                    app:cornerRadius="16dp"-->
+<!--                    app:icon="@drawable/ic_camera"-->
+<!--                    app:iconSize="15dp"-->
+<!--                    app:iconGravity="textStart"-->
+<!--                    app:iconPadding="4dp"-->
+<!--                    app:iconTint="@color/green"-->
+<!--                    android:minWidth="0dp"-->
+<!--                    android:paddingHorizontal="8dp" />-->
 
 
             </FrameLayout>
@@ -74,16 +74,16 @@
                         app:civ_border_color="@color/white"
                         app:civ_border_width="3dp" />
 
-                    <ImageView
-                        android:id="@+id/edit_profile_photo"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_gravity="bottom|end"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/circle_green"
-                        android:padding="6dp"
-                        android:src="@drawable/ic_camera"
-                       />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/edit_profile_photo"-->
+<!--                        android:layout_width="32dp"-->
+<!--                        android:layout_height="32dp"-->
+<!--                        android:layout_gravity="bottom|end"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        android:background="@drawable/circle_green"-->
+<!--                        android:padding="6dp"-->
+<!--                        android:src="@drawable/ic_camera"-->
+<!--                       />-->
                 </FrameLayout>
 
                 <LinearLayout

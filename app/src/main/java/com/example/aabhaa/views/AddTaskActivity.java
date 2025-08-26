@@ -121,7 +121,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
             new DatePickerDialog(this, (view, y, m, d) -> {
                 selectedDateTime.set(y, m, d);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 etDate.setText(sdf.format(selectedDateTime.getTime()));
             }, year, month, day).show();
         });
@@ -135,7 +135,7 @@ public class AddTaskActivity extends AppCompatActivity {
             new TimePickerDialog(this, (view, h, m) -> {
                 selectedDateTime.set(Calendar.HOUR_OF_DAY, h);
                 selectedDateTime.set(Calendar.MINUTE, m);
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
                 etTime.setText(sdf.format(selectedDateTime.getTime()));
             }, hour, minute, true).show();
         });

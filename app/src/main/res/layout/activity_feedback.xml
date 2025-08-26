@@ -42,10 +42,10 @@
                 android:id="@+id/backButton"
                 layout="@layout/back_button" />
 
-            <include
-                android:id="@+id/langToggle"
-                layout="@layout/lang_toggle"
-                tools:theme="@style/Theme.Aabhaa.Register" />
+<!--            <include-->
+<!--                android:id="@+id/langToggle"-->
+<!--                layout="@layout/lang_toggle"-->
+<!--                tools:theme="@style/Theme.Aabhaa.Register" />-->
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 

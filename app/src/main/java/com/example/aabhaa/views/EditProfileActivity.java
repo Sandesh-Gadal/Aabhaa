@@ -51,6 +51,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private ImageView ivProfile;
     private EditProfileController controller;
 
+    private boolean isImageUploading = false;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(MyApplication.updateLocale(newBase));
@@ -98,8 +100,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Button btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener(v -> {
-            if (uploadedImageUrl == null) {
-                Toast.makeText(this, "Please wait until image is uploaded", Toast.LENGTH_SHORT).show();
+            if (isImageUploading) {
+                Toast.makeText(this, "Image is being uploaded, please wait...", Toast.LENGTH_SHORT).show();
                 return;
             }
             controller.handleProfileUpdate(etFullName, etPhone, etDate, etExperience,
@@ -118,25 +120,26 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void setupDatePicker() {
-        etDate.setFocusable(false);
-        etDate.setOnClickListener(view -> {
-            final Calendar calendar = Calendar.getInstance();
+        etDate.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    EditProfileActivity.this,
-                    (DatePicker view1, int selectedYear, int selectedMonth, int selectedDay) -> {
-                        String date = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
-                        etDate.setText(date);
-                    },
-                    year, month, day
-            );
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    (view, selectedYear, selectedMonth, selectedDay) -> {
+                        // Format as dd/MM/yyyy
+                        String formattedDate = String.format(Locale.ENGLISH, "%02d/%02d/%04d",
+                                selectedDay, selectedMonth + 1, selectedYear);
+                        etDate.setText(formattedDate);
+                    }, year, month, day);
 
             datePickerDialog.show();
         });
     }
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -148,9 +151,13 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void uploadImageToCloudinary(Uri imageUri) {
-        long currentEpochSeconds = System.currentTimeMillis() / 1000L;
-        Log.d("TIME_CHECK", "Current Epoch Seconds: " + currentEpochSeconds);
+        isImageUploading = true;
+        Button btnSave = findViewById(R.id.btnSave);
+        btnSave.setEnabled(false); // disable save button
+
         MediaManager.get().upload(imageUri)
                 .callback(new UploadCallback() {
                     @Override public void onStart(String requestId) {}
@@ -160,14 +167,18 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onSuccess(String requestId, Map resultData) {
                         uploadedImageUrl = resultData.get("secure_url").toString();
                         Toast.makeText(EditProfileActivity.this, "Image uploaded", Toast.LENGTH_SHORT).show();
+                        isImageUploading = false;
+                        btnSave.setEnabled(true); // re-enable save button
                     }
-
                     @Override
                     public void onError(String requestId, ErrorInfo error) {
                         Toast.makeText(EditProfileActivity.this, "Upload error: " + error.getDescription(), Toast.LENGTH_LONG).show();
+                        isImageUploading = false;
+                        btnSave.setEnabled(true); // allow retry or skip
                     }
                 }).dispatch();
     }
+
     private void updateUIWithUserData(User user) {
         if (user == null) {
             // User object is null, set all to default
@@ -204,12 +215,12 @@ public class EditProfileActivity extends AppCompatActivity {
         if (rawDate != null && !rawDate.isEmpty()) {
             try {
                 // Parse the ISO date string
-                SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
+                SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
                 isoFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
                 Date date = isoFormat.parse(rawDate);
 
                 // Format to desired output
-                SimpleDateFormat desiredFormat = new SimpleDateFormat("d/M/yyyy", Locale.getDefault());
+                SimpleDateFormat desiredFormat = new SimpleDateFormat("d/M/yyyy", Locale.ENGLISH);
                 String formattedDate = desiredFormat.format(date);
 
                 etDate.setText(formattedDate);

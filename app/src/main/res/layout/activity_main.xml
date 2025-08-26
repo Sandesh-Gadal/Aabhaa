@@ -21,9 +21,9 @@ app:cardElevation="4dp">
         android:id="@+id/backButton"
         layout="@layout/back_button" />
 
-    <include
-        android:id="@+id/langToggle"
-        layout="@layout/lang_toggle" />
+<!--    <include-->
+<!--        android:id="@+id/langToggle"-->
+<!--        layout="@layout/lang_toggle" />-->
 </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
 

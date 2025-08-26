@@ -59,7 +59,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nitrogen"
+                android:id="@+id/tvLabelNitrogen"
+                android:text="@string/nitrogen"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
@@ -98,7 +99,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phosphorus"
+                android:id="@+id/tvLabelPhosphorus"
+                android:text="@string/phosphorus"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
@@ -136,7 +138,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Potassium"
+                android:id="@+id/tvLabelPotassium"
+                android:text="@string/potassium"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"

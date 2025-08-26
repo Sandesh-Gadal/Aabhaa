@@ -44,7 +44,13 @@ public class CalendarFragment extends Fragment {
 
     private Calendar selectedDate = Calendar.getInstance();
     private List<Task> allTasks = new ArrayList<>();
-    private Map<String, Integer> dateTaskCountMap = new HashMap<>(); // date -> task count
+    private Map<String, Integer> dateTaskCountMap = new HashMap<>(); // backend date -> task count
+
+    private final String[] categoriesBackend = {"Fertilization","Irrigation","Pesticides","Harvesting","Farming",
+            "Maintenance","Weeding","Soil Preparation","Other"};
+
+    private final String[] categoriesNepali = {"मलजनन", "सिंचाई", "किटनाशक", "फसल काट्ने", "खेती",
+            "रखरखाव", "गहिराई", "माटो तयारी", "अन्य"};
 
     @Nullable
     @Override
@@ -65,14 +71,11 @@ public class CalendarFragment extends Fragment {
         tvTaskDate = view.findViewById(R.id.tvTaskDate);
         chipGroupCategories = view.findViewById(R.id.chipGroupCategories);
 
-        // Default date label
+        setupChips();
         updateTaskDateLabel(selectedDate);
 
         calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
             selectedDate.set(year, month, dayOfMonth);
-            updateTaskDateLabel(selectedDate);
-
-            Log.d("CalendarFragment", "Selected date: " + new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.getTime()));
             filterTasks();
         });
 
@@ -91,7 +94,7 @@ public class CalendarFragment extends Fragment {
             if (tasks != null) {
                 allTasks.addAll(tasks);
 
-                // Build map of date -> task count
+                // Build map of backend date -> task count
                 for (Task task : allTasks) {
                     if (task.getDate() == null) continue;
                     int count = dateTaskCountMap.getOrDefault(task.getDate(), 0);
@@ -101,41 +104,69 @@ public class CalendarFragment extends Fragment {
                 Log.d("CalendarFragment", "Date -> task count map: " + dateTaskCountMap);
             }
 
-            // Filter tasks for selected date
             filterTasks();
         });
     }
 
+    private void setupChips() {
+        chipGroupCategories.removeAllViews();
+
+        Locale currentLocale = getResources().getConfiguration().locale;
+        boolean isNepali = currentLocale.getLanguage().equals("ne");
+
+        // Add "All" chip first
+        Chip allChip = new Chip(getContext());
+        allChip.setText(isNepali ? "सबै" : "All");
+        allChip.setTag("All"); // backend value
+        allChip.setCheckable(true);
+        allChip.setChecked(true); // default selection
+        chipGroupCategories.addView(allChip);
+
+        // Add category chips
+        for (int i = 0; i < categoriesBackend.length; i++) {
+            Chip chip = new Chip(getContext());
+            chip.setText(isNepali ? categoriesNepali[i] : categoriesBackend[i]);
+            chip.setTag(categoriesBackend[i]); // always English for backend
+            chip.setCheckable(true);
+            chipGroupCategories.addView(chip);
+        }
+
+        chipGroupCategories.setOnCheckedChangeListener((group, checkedId) -> filterTasks());
+    }
+
+
     private void updateTaskDateLabel(Calendar date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        String selectedDateStr = sdf.format(date.getTime());
+        // Backend date (always English for comparison)
+        SimpleDateFormat sdfBackend = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String selectedDateStr = sdfBackend.format(date.getTime());
 
         int taskCount = dateTaskCountMap.getOrDefault(selectedDateStr, 0);
+
+        // Display date in current locale
         String formattedDisplay = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(date.getTime());
 
-        tvTaskDate.setText("Tasks for " + formattedDisplay + " (" + taskCount + ")");
+        tvTaskDate.setText(getString(R.string.tasks_for_date, formattedDisplay, taskCount));
     }
 
     private void filterTasks() {
         List<Task> filtered = new ArrayList<>();
-        String selectedChipText = null;
 
         Chip selectedChip = chipGroupCategories.findViewById(chipGroupCategories.getCheckedChipId());
-        if (selectedChip != null) selectedChipText = selectedChip.getText().toString();
+        String selectedChipBackend = selectedChip != null ? (String) selectedChip.getTag() : null;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        String selectedDateStr = sdf.format(selectedDate.getTime());
+        // Backend date
+        SimpleDateFormat sdfBackend = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String selectedDateStr = sdfBackend.format(selectedDate.getTime());
 
         for (Task task : allTasks) {
             if (task.getDate() == null) continue;
             if (!task.getDate().equals(selectedDateStr)) continue;
-            if (selectedChipText != null && !selectedChipText.equals("All") &&
-                    !task.getCategory().equalsIgnoreCase(selectedChipText)) continue;
+            if (selectedChipBackend != null && !selectedChipBackend.equals("All") &&
+                    !task.getCategory().equalsIgnoreCase(selectedChipBackend)) continue;
 
             filtered.add(task);
         }
 
-        Log.d("CalendarFragment", "Filtered tasks count: " + filtered.size());
         adapter.updateTasks(filtered);
         updateTaskDateLabel(selectedDate);
     }

@@ -224,8 +224,8 @@ public class ProfileFragment extends Fragment {
         if (getView() == null) return;
 
         // Header / Section titles
-        Button editCover = getView().findViewById(R.id.editcoverimg);
-        editCover.setText(getString(R.string.edit_cover));
+//        Button editCover = getView().findViewById(R.id.editcoverimg);
+//        editCover.setText(getString(R.string.edit_cover));
 
         TextView editProfile = getView().findViewById(R.id.editProfile);
         editProfile.setText(getString(R.string.edit_profile));

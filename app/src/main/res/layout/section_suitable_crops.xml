@@ -9,7 +9,7 @@
         android:id="@+id/tvCropsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Suitable Seasonal Crops"
+        android:text="@string/crops_title"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/aabhaGreen"

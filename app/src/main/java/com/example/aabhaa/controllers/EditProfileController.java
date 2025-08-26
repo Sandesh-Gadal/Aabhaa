@@ -53,8 +53,9 @@ public class EditProfileController {
             String farmerType = acvFarmerType.getText().toString().trim();
             String education = acvEducation.getText().toString().trim();
 
-            String gender = getSelectedRadioText(genderGroup);
-            String language = getSelectedRadioText(langGroup);
+            String gender = getSelectedRadioTag(genderGroup);
+            String language = getSelectedRadioTag(langGroup);
+
 
             Log.d("EditProfile",""+fullName+"  "+dateOfBirth);
             // Validate each field
@@ -139,6 +140,17 @@ public class EditProfileController {
         }
         return "";
     }
+
+    private String getSelectedRadioTag(RadioGroup group) {
+        int id = group.getCheckedRadioButtonId();
+        if (id != -1) {
+            RadioButton selected = group.findViewById(id);
+            Object tag = selected.getTag();
+            return tag != null ? tag.toString() : "";
+        }
+        return "";
+    }
+
 
     public void updateUserProfile(User user) {
         Call<User> call = userRepository.updateUser(user);

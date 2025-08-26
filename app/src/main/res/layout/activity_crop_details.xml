@@ -51,7 +51,7 @@
                 android:id="@+id/headerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Crop details"
+                android:text="@string/header_crop_details"
                 android:textColor="@color/dark_green"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -159,7 +159,7 @@
 
                 <!-- Static Label -->
                 <TextView
-                    android:text="Description"
+                    android:text="@string/label_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -220,7 +220,7 @@ Incorporate well-decomposed organic compost or farmyard manure (FYM) to enhance 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Duration"
+                                    android:text="@string/label_duration"
                                     android:textColor="#F57C00"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -264,7 +264,7 @@ Incorporate well-decomposed organic compost or farmyard manure (FYM) to enhance 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="pH Level"
+                                    android:text="@string/label_ph_level"
                                     android:textColor="#1565C0"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -316,7 +316,7 @@ Incorporate well-decomposed organic compost or farmyard manure (FYM) to enhance 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Temperature"
+                                    android:text="@string/label_temperature"
                                     android:textColor="#D84315"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -362,7 +362,7 @@ Incorporate well-decomposed organic compost or farmyard manure (FYM) to enhance 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You might also like"
+                android:text="@string/label_you_might_also_like"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"

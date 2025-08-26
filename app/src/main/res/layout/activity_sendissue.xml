@@ -63,12 +63,12 @@
                 app:layout_constraintVertical_bias="0.7" />
 
             <!-- Language Toggle Include -->
-            <include
-                android:id="@+id/langToggle"
-                layout="@layout/lang_toggle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+<!--            <include-->
+<!--                android:id="@+id/langToggle"-->
+<!--                layout="@layout/lang_toggle"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -178,40 +178,64 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardUpload"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:foreground="?attr/selectableItemBackground"
             app:cardCornerRadius="8dp"
             android:background="@android:color/white"
             android:clickable="true"
-            app:cardElevation="1dp">
+            app:cardElevation="2dp">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="200dp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/transparent"
+                android:id="@+id/uploadContainer">
 
+                <!-- Image that will be uploaded -->
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_upload_cloud" />
+                    android:id="@+id/ivUploadedImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Uploaded Image Preview" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Upload your image or video here"
-                    android:textColor="@color/green"
-                    android:textSize="16sp"
-                    android:layout_marginTop="8dp" />
+                <!-- Foreground content -->
+                <LinearLayout
+                    android:id="@+id/uploadContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@android:color/transparent"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Browse files"
-                    android:textColor="@color/green"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_upload_cloud" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upload your image or video here"
+                        android:textColor="@color/aabhaGreen"
+                        android:textSize="16sp"
+                        android:layout_marginTop="8dp"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Browse files"
+                        android:textColor="@color/aabhaGreen"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </FrameLayout>
+
         </androidx.cardview.widget.CardView>
 
         <!-- Publish Button -->
