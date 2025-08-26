@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,12 @@ public class FAQActivity extends AppCompatActivity {
     private RecyclerView recyclerViewFAQ;
     private FAQAdapter faqAdapter;
     private List<FAQ> faqList;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

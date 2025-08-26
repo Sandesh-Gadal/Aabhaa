@@ -3,6 +3,7 @@ package com.example.aabhaa.views.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import com.example.aabhaa.data.repository.CropRepository;
 import com.example.aabhaa.databinding.FragmentHomeBinding;
 import com.example.aabhaa.models.Content;
 import com.example.aabhaa.models.User;
+import com.example.aabhaa.views.CropDetailsActivity;
 import com.example.aabhaa.views.MainActivity;
 import com.example.aabhaa.views.NotificationActivity;
 
@@ -123,7 +125,13 @@ public class HomeFragment extends Fragment {
 
 
         cropRepository = new CropRepository(getContext());
-        cropController = new CropController(getContext(), recyclerView, cropRepository);
+        CropController cropController = new CropController(recyclerView, cropRepository, crop -> {
+            // Use getActivity() for launching intent
+            Intent intent = new Intent(getActivity(), CropDetailsActivity.class);
+            intent.putExtra("crop_item", crop);
+            startActivity(intent);
+
+        });
         cropController.fetchCropsBySeason();
         binding.includeHeader.notificationContainer.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), NotificationActivity.class);
@@ -276,6 +284,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateUIWithUserData(User user) {
+
+        if (binding == null || binding.includeHeader == null) {
+            Log.w("LANG", "updateUIWithUserData called but binding is null");
+            return;
+        }
         binding.includeHeader.userName.setText(user.getFullName());
         // Load profile image
         Glide.with(this)

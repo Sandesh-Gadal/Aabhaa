@@ -55,6 +55,7 @@
                 android:maxLines="2"
                 android:ellipsize="end" />
 
+
             <!-- Description -->
             <TextView
                 android:id="@+id/tvPostDescription"

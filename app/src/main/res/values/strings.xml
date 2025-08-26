@@ -1,6 +1,24 @@
 <resources>
     <string name="app_name">Aabhaa</string>
 
+    <!-- res/values/strings.xml -->
+        <string name="settings">Settings</string>
+        <string name="language">Language</string>
+        <string name="welcome">Welcome to Aabha</string>
+        <string name="choose_crop">Choose your crop</string>
+        <string name="soil_data">Soil Data</string>
+        <string name="seasonal_tips">Seasonal Tips</string>
+
+
+
+    <!-- Settings List -->
+    <string name="notifications">Notifications</string>
+    <string name="account">Account</string>
+    <string name="privacy">Privacy</string>
+    <string name="about_app">About App</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="logout">Logout</string>
+
 
 
     <string-array name="crop_list">
@@ -10,5 +28,20 @@
         <item>Barley</item>
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
+
+
+<!--    profile fragment -->
+    <string name="edit_cover">Edit Cover</string>
+    <string name="profile_name">Sandesh Gadal</string>
+    <string name="profile_phone">9742541340</string>
+    <string name="profile_location">Bagmati, Chitwan, Nepal</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="my_crops">My Crops</string>
+    <string name="address">Address</string>
+    <string name="change_password">Change Password</string>
+    <string name="report_issue">Report an Issue</string>
+
+    <string name="faq">FAQs</string>
+
 
 </resources>

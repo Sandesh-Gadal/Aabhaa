@@ -1,4 +1,5 @@
 package com.example.aabhaa.views;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,12 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 public class ForgotpasswordActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private DotsIndicator dotsIndicator;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
+
 
 
     @Override

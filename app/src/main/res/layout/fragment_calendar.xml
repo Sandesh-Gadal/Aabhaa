@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    >
+    android:background="@android:color/white">
 
     <!-- Guidelines -->
     <androidx.constraintlayout.widget.Guideline
@@ -23,15 +22,13 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp" />
 
-
-
     <!-- Main Scrollable Content -->
     <ScrollView
+        android:id="@+id/scrollViewCalendar"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/headerCard"
-
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         tools:ignore="NotSibling">
@@ -41,7 +38,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="24dp"
-            android:paddingBottom="120dp">
+            android:paddingBottom="10dp">
 
             <!-- Title -->
             <TextView
@@ -60,38 +57,37 @@
                 android:text="Track your farming tasks easily"
                 android:textColor="#4CAF50"
                 android:textSize="16sp"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="10dp" />
 
             <!-- Calendar View -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/calendarCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
                 app:cardElevation="4dp"
                 app:cardCornerRadius="12dp"
                 app:strokeColor="#E0E0E0"
                 app:strokeWidth="1dp">
-            <CalendarView
-                android:id="@+id/calendar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/calender_details"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"   />
+
+                <CalendarView
+                    android:id="@+id/calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
             </com.google.android.material.card.MaterialCardView>
+
+
+
             <!-- Filter Buttons -->
             <HorizontalScrollView
                 android:id="@+id/categoryScroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
                 android:overScrollMode="never"
-                android:scrollbars="none"
-                app:layout_constraintTop_toBottomOf="@id/calendar"
-                >
+                android:scrollbars="none">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupCategories"
@@ -119,7 +115,7 @@
 
                     <com.google.android.material.chip.Chip
                         style="@style/CategoryChipStyle"
-                        android:text="plantation" />
+                        android:text="Plantation" />
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
 
@@ -134,14 +130,35 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Task List (repeated item layout) -->
-            <include layout="@layout/item_task_card" />
-            <include layout="@layout/item_task_card" />
-            <include layout="@layout/item_task_card" />
-
+            <!-- RecyclerView for Tasks -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTasks"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                tools:listitem="@layout/item_task_card"/>
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation -->
+    <!-- Floating Action Button fixed at bottom-right -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="Add Task"
+        app:fabCustomSize="60dp"
+        app:maxImageSize="70dp"
+        app:fabSize="normal"
+        app:tint="@null"
+        app:elevation="0dp"
+
+        android:src="@drawable/ic_add"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

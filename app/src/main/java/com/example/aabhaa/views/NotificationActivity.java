@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,6 +12,12 @@ import com.example.aabhaa.databinding.ActivityNotificationBinding;
 public class NotificationActivity extends AppCompatActivity {
 
     private ActivityNotificationBinding binding;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

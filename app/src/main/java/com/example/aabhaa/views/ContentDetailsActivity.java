@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,12 @@ public class ContentDetailsActivity extends AppCompatActivity {
     private ExoPlayer player;
     private View currentInnerView;
     private List<Content> fullContentList = new ArrayList<>(); // Full list passed from adapter
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

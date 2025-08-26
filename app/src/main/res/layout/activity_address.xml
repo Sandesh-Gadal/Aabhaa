@@ -64,12 +64,12 @@
                 app:layout_constraintVertical_bias="0.7" />
 
             <!-- Language Toggle Include -->
-            <include
-                android:id="@+id/langToggle"
-                layout="@layout/lang_toggle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+<!--            <include-->
+<!--                android:id="@+id/langToggle"-->
+<!--                layout="@layout/lang_toggle"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

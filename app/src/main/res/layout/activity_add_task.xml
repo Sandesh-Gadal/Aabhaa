@@ -32,6 +32,7 @@
         app:layout_constraintGuide_begin="28dp" />
 
     <!-- Header Card with Back and Language Toggle -->
+    <!-- Header with back and language toggle -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/headerCard"
         android:layout_width="0dp"
@@ -42,20 +43,45 @@
         app:cardElevation="4dp"
         app:cardCornerRadius="0dp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp">
+            android:layout_height="64dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
 
+            <!-- Back Button Include -->
             <include
                 android:id="@+id/backButton"
-                layout="@layout/back_button" />
+                layout="@layout/back_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-            <include
-                android:id="@+id/langToggle"
-                layout="@layout/lang_toggle"
-                tools:theme="@style/Theme.Aabhaa.Register" />
-        </RelativeLayout>
+            <!-- Header Title -->
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Task"
+                android:textColor="@color/dark_green"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.7" />
+
+            <!-- Language Toggle Include -->
+<!--            <include-->
+<!--                android:id="@+id/langToggle"-->
+<!--                layout="@layout/lang_toggle"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
 
     <!-- Scrollable Form Content -->
     <ScrollView
@@ -76,14 +102,7 @@
             android:paddingTop="16dp">
 
             <!-- Page Title -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add Task"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#2E7D32"
-                android:layout_gravity="center_horizontal" />
+
 
             <!-- Task Title -->
             <TextView
@@ -130,7 +149,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="70dp"
                     android:inputType="textMultiLine"
                     android:gravity="top"
                     android:textColor="#2E7D32" />
@@ -210,11 +229,35 @@
                     android:textColor="#2E7D32" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Repeat interval"
+                android:textColor="#2E7D32"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:hint="Select interval">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvRepeat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:background="@null"
+                    android:textColor="#2E7D32" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
             <!-- Request Help Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRequestHelp"
                 style="@style/AabhaaButtonStyle"
-                android:text="Request Help"
+                android:text="Add Task"
                 android:textColor="@android:color/white"
                 android:backgroundTint="#4CAF50"
                 android:layout_marginTop="24dp"

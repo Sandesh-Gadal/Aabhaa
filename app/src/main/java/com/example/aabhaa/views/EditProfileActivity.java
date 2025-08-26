@@ -1,6 +1,7 @@
 package com.example.aabhaa.views;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,6 +50,12 @@ public class EditProfileActivity extends AppCompatActivity {
     private RadioButton rbMale , rbFemale ,rbOther;
     private ImageView ivProfile;
     private EditProfileController controller;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

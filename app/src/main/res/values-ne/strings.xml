@@ -1,0 +1,36 @@
+<!-- res/values-ne/strings.xml -->
+<resources>
+    <string name="app_name">आभा</string>
+    <string name="settings">सेटिङ</string>
+    <string name="language">भाषा</string>
+    <string name="welcome">आभामा स्वागत छ</string>
+    <string name="choose_crop">तपाईंको बाली चयन गर्नुहोस्</string>
+    <string name="soil_data">माटोको विवरण</string>
+    <string name="seasonal_tips">मौसमी सुझावहरू</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
+    <!-- Header -->
+
+    <!-- Settings List -->
+    <string name="notifications">सूचनाहरू</string>
+    <string name="account">खाता</string>
+    <string name="privacy">गोपनीयता</string>
+    <string name="about_app">एप बारे</string>
+    <string name="help_support">सहायता र समर्थन</string>
+
+
+<!--    profile fragment -->
+    <string name="edit_cover">कभर सम्पादन गर्नुहोस्</string>
+    <string name="profile_name">सन्देश गडाल</string>
+    <string name="profile_phone">9742541340</string>
+    <string name="profile_location">बागमती, चितवन, नेपाल</string>
+    <string name="edit_profile">प्रोफाइल सम्पादन गर्नुहोस्</string>
+    <string name="my_crops">मेरो बाली</string>
+    <string name="address">ठेगाना</string>
+    <string name="change_password">पासवर्ड परिवर्तन गर्नुहोस्</string>
+    <string name="report_issue">समस्या रिपोर्ट गर्नुहोस्</string>
+    <string name="faq">प्रश्नोत्तर</string>
+    <string name="logout">लगआउट</string>
+
+</resources>
+

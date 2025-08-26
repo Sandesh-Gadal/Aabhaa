@@ -1,6 +1,7 @@
 package com.example.aabhaa.views;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -29,6 +30,8 @@ public abstract class BaseFragment extends Fragment {
             return true;
         });
     }
+
+
 
     public void overrideBackTransition() {
         if (getActivity() != null) {

@@ -66,6 +66,7 @@
                 android:layout_marginTop="6dp" />
 
             <TextView
+                android:id="@+id/tvNitrogen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="120 kg/ha"
@@ -104,6 +105,7 @@
                 android:layout_marginTop="6dp" />
 
             <TextView
+                android:id="@+id/tvPhosphorus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="60 kg/ha"
@@ -141,6 +143,7 @@
                 android:layout_marginTop="6dp" />
 
             <TextView
+                android:id="@+id/tvPotassium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="40 kg/ha"

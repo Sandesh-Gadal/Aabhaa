@@ -1,6 +1,7 @@
 package com.example.aabhaa.views;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,10 +11,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.aabhaa.controllers.AddressController;
 import com.example.aabhaa.databinding.ActivityAddressBinding;
 
+
+
+
 public class AddressActivity extends AppCompatActivity {
 
     private ActivityAddressBinding binding;
     private AddressController addressController;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

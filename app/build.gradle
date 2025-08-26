@@ -74,6 +74,7 @@ dependencies {
     //material ui style
     implementation 'com.google.android.material:material:1.12.0'
 
+
     //for video playing and online streaming
     implementation 'androidx.media3:media3-exoplayer:1.2.1'
     implementation 'androidx.media3:media3-ui:1.2.1'
@@ -128,6 +129,9 @@ dependencies {
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+
+//workmanager dependency for reminder
+        implementation "androidx.work:work-runtime-ktx:2.8.1"
 
 
 }

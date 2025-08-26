@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.os.Bundle;
 
 
@@ -9,6 +10,10 @@ import com.example.aabhaa.R;
 
 public class SendIssueActivity  extends AppCompatActivity {
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
 
 
     @Override

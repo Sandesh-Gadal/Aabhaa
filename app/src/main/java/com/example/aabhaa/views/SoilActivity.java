@@ -26,6 +26,10 @@ public class SoilActivity extends AppCompatActivity {
 
     int soilId;
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

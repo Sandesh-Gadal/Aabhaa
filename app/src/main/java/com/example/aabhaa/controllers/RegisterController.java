@@ -2,6 +2,7 @@ package com.example.aabhaa.controllers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Patterns;
 import android.widget.Toast;
 
 import com.example.aabhaa.auth.AuthResponse;
@@ -46,6 +47,11 @@ public class RegisterController {
         if (email.isEmpty()) {
             binding.emailLayout.setError("Email is required");
             isValid = false;
+        } else if (!isAllowedDomain(email)) {
+            binding.emailLayout.setError("Only Gmail, Outlook, Hotmail, Live, MSN or .edu emails are allowed");
+            isValid = false;
+        } else {
+            binding.emailLayout.setError(null); // Clear error
         }
         if (password.isEmpty()) {
             binding.passwordLayout.setError("Password is required");
@@ -81,4 +87,37 @@ public class RegisterController {
             }
         });
     }
+
+    // Allowed domains (extendable later)
+    private static final String[] ALLOWED_DOMAINS = {
+            "gmail.com",
+            "outlook.com",
+            "hotmail.com",
+            "live.com",
+            "msn.com"
+    };
+
+    private boolean isAllowedDomain(String email) {
+        if (email == null || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return false; // Invalid format
+        }
+
+        String domain = email.substring(email.indexOf("@") + 1).toLowerCase();
+
+        // Check exact match
+        for (String allowed : ALLOWED_DOMAINS) {
+            if (domain.equals(allowed)) {
+                return true;
+            }
+        }
+
+        // Special check for .edu emails
+        if (domain.endsWith(".edu")) {
+            return true;
+        }
+
+        return false;
+    }
+
+
 }

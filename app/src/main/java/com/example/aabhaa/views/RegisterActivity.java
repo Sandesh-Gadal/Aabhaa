@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,6 +15,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
     private RegisterController registerController;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,11 @@ public class AddAddressActivity extends FragmentActivity {
 
     public  boolean isEditMode = false;
     int addressId;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

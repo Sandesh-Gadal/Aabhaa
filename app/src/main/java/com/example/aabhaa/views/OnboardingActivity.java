@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -30,6 +31,10 @@ public class OnboardingActivity extends AppCompatActivity {
     private final int SLIDE_DELAY = 3000; // 3 seconds per slide
     private final int PAUSE_AFTER_TOUCH = 10000; // 10 seconds pause after user interaction
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

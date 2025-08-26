@@ -21,10 +21,16 @@ public class CropAdapter extends RecyclerView.Adapter<CropAdapter.CropViewHolder
 
     private Context context;
     private List<Crop> cropList;
+    private OnCropClickListener listener;
 
-    public CropAdapter(Context context, List<Crop> cropList) {
+    public interface OnCropClickListener {
+        void onCropClick(Crop crop);
+    }
+
+    public CropAdapter(Context context, List<Crop> cropList, OnCropClickListener listener) {
         this.context = context;
         this.cropList = cropList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -40,11 +46,18 @@ public class CropAdapter extends RecyclerView.Adapter<CropAdapter.CropViewHolder
 
         holder.tvSuggestionTitle.setText(crop.getName());
 
-        // Load image using Glide
+        // Load image
         Glide.with(context)
                 .load(crop.getImage_url())
-                .placeholder(R.drawable.bg_wheat) // fallback
+                .placeholder(R.drawable.bg_wheat)
                 .into(holder.profileImage);
+
+        // Handle click
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onCropClick(crop);
+            }
+        });
     }
 
     @Override

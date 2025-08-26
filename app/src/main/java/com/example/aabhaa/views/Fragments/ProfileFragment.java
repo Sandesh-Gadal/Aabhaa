@@ -1,16 +1,22 @@
 package com.example.aabhaa.views.Fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.aabhaa.R;
@@ -26,7 +32,9 @@ import com.example.aabhaa.views.EditProfileActivity;
 import com.example.aabhaa.views.FAQActivity;
 import com.example.aabhaa.views.ForgotpasswordActivity;
 import com.example.aabhaa.views.LoginActivity;
+import com.example.aabhaa.views.MyApplication;
 import com.example.aabhaa.views.SendIssueActivity;
+import com.example.aabhaa.views.SettingsActivity;
 import com.example.aabhaa.views.SoilActivity;
 import com.example.aabhaa.views.SoilListActivity;
 
@@ -41,6 +49,13 @@ public class ProfileFragment extends Fragment {
     private static final int EDIT_PROFILE_REQUEST = 1001;
 
 
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(MyApplication.updateLocale(context)); // Do NOT call updateLocale here
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,6 +67,8 @@ public class ProfileFragment extends Fragment {
 
         return binding.getRoot(); // Inflate the layout for this fragment
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view,
@@ -103,6 +120,10 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         }));
 
+        binding.settings.setOnClickListener((v->{
+          openSettings();
+        }));
+
         binding.logout.setOnClickListener(v->{
             // Clear tokens from shared prefs
             sharedPrefManager.clearTokens();
@@ -113,6 +134,24 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
     }
+
+    private final ActivityResultLauncher<Intent> settingsLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    // pass along the fragment to reload
+//                    String target = result.getData().getStringExtra("navigate_to");
+
+                    Intent intent = requireActivity().getIntent();
+                    intent.putExtra("navigate_to", "profile");
+                    requireActivity().recreate(); // refresh MainActivity + fragment
+                }
+            });
+
+    private void openSettings() {
+        Intent intent = new Intent(requireContext(), SettingsActivity.class);
+        settingsLauncher.launch(intent);
+    }
+
 
     @Override
     public void onDestroyView() {
@@ -156,6 +195,68 @@ public class ProfileFragment extends Fragment {
                 updateUIWithUserData(user);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+   Log.d("LANG","the proflie frament is resumed");
+
+        // Update UI initially
+        updateProfileTexts();
+
+        // Register language listener
+        MyApplication.setLanguageChangeListener(newLang -> {
+            Log.d("LANG", "ProfileFragment detected language change: " + newLang);
+            updateProfileTexts();
+        });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // Remove listener to prevent leaks
+        MyApplication.setLanguageChangeListener(null);
+    }
+
+    private void updateProfileTexts() {
+        if (getView() == null) return;
+
+        // Header / Section titles
+        Button editCover = getView().findViewById(R.id.editcoverimg);
+        editCover.setText(getString(R.string.edit_cover));
+
+        TextView editProfile = getView().findViewById(R.id.editProfile);
+        editProfile.setText(getString(R.string.edit_profile));
+        Log.d("LANG", "Edit Profile text set: " + editProfile.getText());
+        TextView myCrops = getView().findViewById(R.id.my_crop);
+        myCrops.setText(getString(R.string.my_crops));
+
+        TextView address = getView().findViewById(R.id.tvaddress);
+        address.setText(getString(R.string.address));
+
+        TextView soil = getView().findViewById(R.id.soiltext);
+        soil.setText(getString(R.string.soil_data));
+
+        TextView changePassword = getView().findViewById(R.id.tvchangepwd);
+        changePassword.setText(getString(R.string.change_password));
+
+        TextView reportIssue = getView().findViewById(R.id.tvreportissue);
+        reportIssue.setText(getString(R.string.report_issue));
+
+        TextView faq = getView().findViewById(R.id.tvlogout);
+        faq.setText(getString(R.string.logout));
+
+        TextView logout = getView().findViewById(R.id.tvfaq);
+        logout.setText(getString(R.string.faq));
+
+
+
+        TextView settingsLabel = getView().findViewById(R.id.tvsettings);
+        if (settingsLabel != null) {
+            settingsLabel.setText(getString(R.string.settings));
+        }
     }
 
 }

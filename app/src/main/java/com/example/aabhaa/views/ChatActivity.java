@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -39,6 +40,13 @@ public class ChatActivity extends AppCompatActivity {
     // Firebase
     private DatabaseReference roomAdminRef; // room_5 (admin room)
     private DatabaseReference roomUserRef;  // room_2 (compat mode)
+
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
+
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {

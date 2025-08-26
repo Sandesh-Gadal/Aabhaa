@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +16,12 @@ public class LoginActivity extends AppCompatActivity {
     private LoginController loginController;
 
 //    private WeatherController weatherController;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

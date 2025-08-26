@@ -1,5 +1,6 @@
 package com.example.aabhaa.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     private int currentSelectedItemId = -1; // Initially no selection
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyApplication.updateLocale(newBase));
+        Log.d("LANG", "MainActivity attachBaseContext: " +
+                getResources().getConfiguration().locale);
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
